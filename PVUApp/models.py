@@ -49,7 +49,7 @@ class Familiar(Persona):
     Parentesco = models.CharField(max_length=1, choices=PARENTESCOS)
     Trabajo = models.CharField(max_length=50)
 
-class Observación_Psico(models.Model):
+class Observacionpsico(models.Model):
     Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
     Texto = models.TextField(verbose_name='Introducir texto')
     Fecha = models.DateField(auto_now = True)
@@ -170,27 +170,28 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 def set_perms(sender, instance, created, **kwargs):
+    all = ['Can view religion','Can add religion','Can delete reparacion',
+    'Can view domicilio','Can add domicilio','Can delete domicilio',
+    'Can view chico','Can add chico','Can delete chico',
+    'Can view familiar','Can add familiar','Can delete familiar',
+    'Can view observacionpsico','Can add observacionpsico','Can delete observacionpsico',
+    'Can view taller','Can add taller','Can delete taller',
+    'Can view asistencia','Can add asistencia','Can delete asistencia',
+    'Can view observacion','Can add observacion','Can delete observacion',
+    'Can view comida','Can add comida','Can delete comida',
+    'Can view menu','Can add menu','Can delete menu',
+    'Can view ingrediente','Can add ingrediente','Can delete ingrediente',
+    ]
     if created:
         if instance.nivel == '1': 
-            all = ['Can view Religion','Can add Religion','Can delete reparacion',
-    'Can view Domicilio','Can add Domicilio','Can delete Domicilio',
-    'Can view Chico','Can add Chico','Can delete Chico',
-    'Can view Familiar','Can add Familiar','Can delete Familiar',
-    'Can view Observacion_psico','Can add Observacion_psico','Can delete Observacion_psico',
-    'Can view Taller','Can add Taller','Can delete Taller',
-    'Can view Asistencia','Can add Asistencia','Can delete Asistencia',
-    'Can view Observacion','Can add Observacion','Can delete Observacion',
-    'Can view Comida','Can add Comida','Can delete Comida',
-    'Can view Menu','Can add Menu','Can delete Menu',
-    'Can view Ingrediente','Can add Ingrediente','Can delete Ingrediente',
-    ]
             permissions = Permission.objects.filter(name__in = all)
             instance.user_permissions.set(permissions) 
         elif instance.nivel == '2':
-            permissions = Permission.objects.filter(name__in = ['Can view Observación_Psico','Can add Observación_Psico','Can view Asistencia','Can add Asistencia','Can delete Asistencia', 'Can view Observacion','Can add Observacion','Can delete Observacion'])
+            permissions = Permission.objects.filter(name__in = ['Can view observacionpsico','Can add observacionpsico','Can view asistencia','can add asistencia','Can delete asistencia', 'Can view observacion','Can add observacion','Can delete observacion'])
             instance.user_permissions.set(permissions)
         elif instance.nivel == '3':
-            permissions = Permission.objects.filter(name__in = ['Can view Comida','Can add Comida','Can delete Comida','Can view Menu','Can add Menu','Can delete Menu', 'Can view Ingrediente','Can add Ingrediente','Can delete Ingrediente',])
+            permissions = Permission.objects.filter(name__in = ['Can view comida','Can add comida','Can delete comida','Can view menu','Can add menu','Can delete menu', 'Can view ingrediente','Can add ingrediente','Can delete ingrediente',])
             instance.user_permissions.set(permissions)
+
 post_save.connect(set_perms, sender = MyUser)
 
