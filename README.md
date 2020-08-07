@@ -5,4 +5,4 @@ Teodoro Reyna
 Molina Franco
 Grasso Lorenzo
 Carranza Mateo
-Luduenia Eduardo
+Ludueña Eduardo
