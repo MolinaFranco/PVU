@@ -16,18 +16,24 @@ class Persona(models.Model):
     Apellido = models.CharField(max_length=50)
     Edad = models.IntegerField()
     def __str__(self):
-        return Nombre + Apellido
+        return self.Nombre + " " + self.Apellido
     
 class Religion(models.Model):
     Nombre = models.CharField(max_length=50)
+    class Meta:
+         verbose_name_plural = "Religiones"
     def __str__(self):
-        return Nombre
+        return self.Nombre
 
 class Domicilio(models.Model):
     Calle = models.CharField(max_length=50)
     Numero = models.IntegerField()
     Piso = models.IntegerField(blank=True)
     Complejo = models.CharField(blank=True, max_length=50)
+    class Meta:
+         verbose_name_plural = "Domicilios"
+    def __str__(self):
+        return self.Calle + " " + str(self.Numero)
 
 class Chico(Persona):
     Fecha_nacimiento = models.DateField()
@@ -48,6 +54,8 @@ class Familiar(Persona):
     Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
     Parentesco = models.CharField(max_length=1, choices=PARENTESCOS)
     Trabajo = models.CharField(max_length=50)
+    class Meta:
+         verbose_name_plural = "Familiares"
 
 class Observacionpsico(models.Model):
     Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
@@ -57,22 +65,35 @@ class Observacionpsico(models.Model):
     Altura = models.IntegerField()
     Altura = models.CharField(max_length=50)
     Peso = models.IntegerField()
+    def __str__(self):
+        return self.Chico + " " + str(self.Fecha)
+    class Meta:
+        verbose_name = "Observaciones Psicologica"
+        verbose_name_plural = "Observaciones Psicologicas"
 
 class Taller(models.Model):
     Nombre = models.CharField(max_length=50)
     def __str__(self):
-        return Nombre
+        return self.Nombre
+    class Meta:
+        verbose_name_plural = "Talleres"
 
 class Asistencia(models.Model):
     Fecha = models.DateField()
     Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
     Taller = models.ForeignKey(Taller, on_delete = models.CASCADE, null = True, blank = True)
+    def __str__(self):
+        return self.Chico.Nombre + " " +  str(self.Fecha)
 
 class Observacion(models.Model):
     Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
     Texto = models.TextField(verbose_name='Introducir texto')
     Fecha = models.DateField(auto_now = True)
     Taller = models.ForeignKey(Taller, on_delete = models.CASCADE, null = True, blank = True)
+    class Meta:
+        verbose_name_plural = "Observaciones"
+    def __str__(self):
+        return self.Chico.Nombre + " " + str(self.Fecha)
 
 class Ingrediente(models.Model):
     Nombre = models.CharField(max_length=50)
@@ -80,18 +101,22 @@ class Ingrediente(models.Model):
     Tipo_de_alimento = models.CharField(max_length=50)
     Fecha_de_vencimiento = models.DateField()
     def __str__(self):
-        return Nombre
+        return self.Nombre
 
 class Comida(models.Model):
     Nombre = models.CharField(max_length=50)
     Ingrediente = models.ManyToManyField(Ingrediente)
     Fecha = models.DateField()
     def __str__(self):
-        return Nombre
+        return self.Nombre
 
 class Menu(models.Model):
     Fecha = models.DateField()
     Comida = models.ManyToManyField(Comida)
+    class Meta:
+        verbose_name_plural = "Menús"
+    def __str__(self):
+        return ', '.join([x.Nombre for x in self.Comida.all()]) + " " + str(self.Fecha)
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, nivel, password = None):
@@ -104,14 +129,14 @@ class MyUserManager(BaseUserManager):
         user_obj.is_staff = True
         user_obj.is_active = True
         user_obj.save(using=self.db)
-        return user_obj
+        return self.user_obj
     def create_superuser(self, email, password = None):
         user_obj = self.model(
             email = self.normalize_email(email))
         user_obj.set_password(password)
         user_obj.is_superuser = True
         user_obj.save(using=self.db)
-        return user_obj
+        return self.user_obj
 
 
 class MyUser(AbstractBaseUser, PermissionsMixin):

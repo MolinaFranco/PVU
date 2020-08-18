@@ -47,8 +47,9 @@ admin.site.register(Menu)
 csrf_protect_m = method_decorator(csrf_protect)
 sensitive_post_parameters_m = method_decorator(sensitive_post_parameters())
 
-admin.site.site_header = _("PVU Administration")
-admin.site.site_title = _("My PVU Admin")
+admin.site.index_title = _("PVU")
+admin.site.site_header = _("Personas Voluntarias Unidas")
+admin.site.site_title = _("Personas Voluntarias Unidas")
 
 class MyUserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
