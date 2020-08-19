@@ -18,27 +18,39 @@ class Persona(models.Model):
     def __str__(self):
         return self.Nombre + " " + self.Apellido
     
-class Religion(models.Model):
+
+class Comedor(models.Model):
     Nombre = models.CharField(max_length=50)
+    Calle = models.CharField(max_length=50, null = True)
+    Numero = models.IntegerField(null = True)
+    Complejo = models.CharField(blank=True, max_length=50)
     class Meta:
-         verbose_name_plural = "Religiones"
+         verbose_name_plural = "Comedores"
     def __str__(self):
         return self.Nombre
 
-class Domicilio(models.Model):
-    Calle = models.CharField(max_length=50)
-    Numero = models.IntegerField()
-    Piso = models.IntegerField(blank=True)
-    Complejo = models.CharField(blank=True, max_length=50)
-    class Meta:
-         verbose_name_plural = "Domicilios"
-    def __str__(self):
-        return self.Calle + " " + str(self.Numero)
-
 class Chico(Persona):
+    GENEROS = (
+            ('1', 'Masculino'),
+            ('2', 'Femenino'),
+            ('3', 'Otros'),
+    )
     Fecha_nacimiento = models.DateField()
-    Religion = models.ForeignKey(Religion, on_delete = models.CASCADE, null = True, blank = True)
-    Domicilio = models.ForeignKey(Domicilio, on_delete = models.CASCADE, null = True, blank = True)
+    Comedor = models.ForeignKey(Comedor, on_delete = models.CASCADE, null = True, blank = True)
+    Genero = models.CharField(max_length=1, choices=GENEROS, default=1)
+
+class Psico_chico(Persona):
+    GENEROS = (
+            ('1', 'Masculino'),
+            ('2', 'Femenino'),
+            ('3', 'Otros'),
+    )
+    Fecha_nacimiento = models.DateField()
+    Genero = models.CharField(max_length=1, choices=GENEROS, default=1)
+    Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True, verbose_name='En caso de ser un chico de un comerdor ya existente')
+    class Meta:
+         verbose_name = "Chico del programa de psicologia"
+         verbose_name_plural = "Chicos del programa de psicologia"
 
 class Familiar(Persona):
     PARENTESCOS = (
@@ -52,6 +64,7 @@ class Familiar(Persona):
             ('8', 'Abuela'),
     )
     Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
+    Psico_chico = models.ForeignKey(Psico_chico, on_delete = models.CASCADE, null = True, blank = True)
     Parentesco = models.CharField(max_length=1, choices=PARENTESCOS)
     Trabajo = models.CharField(max_length=50)
     class Meta:
@@ -95,17 +108,28 @@ class Observacion(models.Model):
     def __str__(self):
         return self.Chico.Nombre + " " + str(self.Fecha)
 
-class Ingrediente(models.Model):
+class Alimento(models.Model):
+    MEDIDAS = (
+            ('1', 'Kilos'),
+            ('2', 'Gramos'),
+            ('3', 'Litros'),
+    )
     Nombre = models.CharField(max_length=50)
     Cantidad = models.IntegerField()
-    Tipo_de_alimento = models.CharField(max_length=50)
+    Medidas = models.CharField(max_length=1, choices=MEDIDAS)
     Fecha_de_vencimiento = models.DateField()
+    Enviado =  models.BooleanField(
+        _('active'),
+        default=False,
+        help_text=_(
+            'Chequear cuando el alimento sea enviado'
+        ))
+    Comedor_destino = models.ForeignKey(Comedor, on_delete = models.CASCADE, null = True, blank = True)
     def __str__(self):
         return self.Nombre
 
 class Comida(models.Model):
     Nombre = models.CharField(max_length=50)
-    Ingrediente = models.ManyToManyField(Ingrediente)
     Fecha = models.DateField()
     def __str__(self):
         return self.Nombre
@@ -196,7 +220,6 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 
 def set_perms(sender, instance, created, **kwargs):
     all = ['Can view religion','Can add religion','Can delete reparacion',
-    'Can view domicilio','Can add domicilio','Can delete domicilio',
     'Can view chico','Can add chico','Can delete chico',
     'Can view familiar','Can add familiar','Can delete familiar',
     'Can view observacionpsico','Can add observacionpsico','Can delete observacionpsico',
