@@ -31,17 +31,17 @@ from django.contrib.auth.models import Permission
 from django.shortcuts import redirect
 
 admin.site.register(Persona)
-admin.site.register(Religion)
-admin.site.register(Domicilio)
 admin.site.register(Chico)
 admin.site.register(Familiar)
 admin.site.register(Observacionpsico)
 admin.site.register(Taller)
 admin.site.register(Asistencia)
 admin.site.register(Observacion)
-admin.site.register(Ingrediente)
+admin.site.register(Alimento)
 admin.site.register(Comida)
 admin.site.register(Menu)
+admin.site.register(Psico_chico)
+admin.site.register(Comedor)
 
 
 csrf_protect_m = method_decorator(csrf_protect)
