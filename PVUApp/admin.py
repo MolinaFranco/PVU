@@ -33,7 +33,7 @@ from django.shortcuts import redirect
 admin.site.register(Persona)
 admin.site.register(Chico)
 admin.site.register(Familiar)
-admin.site.register(Observacionpsico)
+admin.site.register(Observacion_psico)
 admin.site.register(Taller)
 admin.site.register(Asistencia)
 admin.site.register(Observacion)
