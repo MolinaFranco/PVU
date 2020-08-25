@@ -9,51 +9,51 @@ from django.db.models.signals import post_save
 
 #class Ejemplo(models.Model):
 #    def __str__(self):
-#        return 
+#        return
 
 class Persona(models.Model):
-    Nombre = models.CharField(max_length=50)
-    Apellido = models.CharField(max_length=50)
-    Edad = models.IntegerField()
+    nombre = models.CharField(max_length=50)
+    apellido = models.CharField(max_length=50)
+    edad = models.IntegerField()
     def __str__(self):
-        return self.Nombre + " " + self.Apellido
-    
+        return self.nombre + " " + self.apellido
+
 
 class Comedor(models.Model):
-    Nombre = models.CharField(max_length=50)
-    Calle = models.CharField(max_length=50, null = True)
-    Numero = models.IntegerField(null = True)
-    Complejo = models.CharField(blank=True, max_length=50)
+    nombre = models.CharField(max_length=50)
+    calle = models.CharField(max_length=50, null = True)
+    numero = models.IntegerField(null = True)
+    complejo = models.CharField(blank=True, max_length=50)
     class Meta:
          verbose_name_plural = "Comedores"
     def __str__(self):
-        return self.Nombre
+        return self.nombre
 
 class Chico(Persona):
-    GENEROS = (
+    generos = (
             ('1', 'Masculino'),
             ('2', 'Femenino'),
             ('3', 'Otros'),
     )
-    Fecha_nacimiento = models.DateField()
-    Comedor = models.ForeignKey(Comedor, on_delete = models.CASCADE, null = True, blank = True)
-    Genero = models.CharField(max_length=1, choices=GENEROS, default=1)
+    fecha_nacimiento = models.DateField()
+    comedor = models.ForeignKey(Comedor, on_delete = models.CASCADE, null = True, blank = True)
+    genero = models.CharField(max_length=1, choices=generos, default=1)
 
 class Psico_chico(Persona):
-    GENEROS = (
+    generos = (
             ('1', 'Masculino'),
             ('2', 'Femenino'),
             ('3', 'Otros'),
     )
-    Fecha_nacimiento = models.DateField()
-    Genero = models.CharField(max_length=1, choices=GENEROS, default=1)
+    fecha_nacimiento = models.DateField()
+    genero = models.CharField(max_length=1, choices=generos, default=1)
     Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True, verbose_name='En caso de ser un chico de un comerdor ya existente')
     class Meta:
          verbose_name = "Chico del programa de psicologia"
          verbose_name_plural = "Chicos del programa de psicologia"
 
 class Familiar(Persona):
-    PARENTESCOS = (
+    parentesco = (
             ('1', 'Padre'),
             ('2', 'Madre'),
             ('3', 'Tio'),
@@ -63,84 +63,84 @@ class Familiar(Persona):
             ('7', 'Abuelo'),
             ('8', 'Abuela'),
     )
-    Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
+    Chico = models.ForeignKey(Chico , on_delete = models.CASCADE, null = True, blank = True)
     Psico_chico = models.ForeignKey(Psico_chico, on_delete = models.CASCADE, null = True, blank = True)
-    Parentesco = models.CharField(max_length=1, choices=PARENTESCOS)
-    Trabajo = models.CharField(max_length=50)
+    parentesco = models.CharField(max_length=1, choices=parentesco)
+    trabajo = models.CharField(max_length=50)
     class Meta:
          verbose_name_plural = "Familiares"
 
 class Observacion_psico(models.Model):
-    Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
-    Texto = models.TextField(verbose_name='Introducir texto')
-    Fecha = models.DateField(auto_now = True)
-    Alergias = models.CharField(max_length=50)
-    Altura = models.IntegerField()
-    Altura = models.CharField(max_length=50)
-    Peso = models.IntegerField()
+    chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
+    texto = models.TextField(verbose_name='Introducir texto')
+    fecha = models.DateField(auto_now = True)
+    alergias = models.CharField(max_length=50)
+    altura = models.IntegerField()
+    altura = models.CharField(max_length=50)
+    peso = models.IntegerField()
     def __str__(self):
-        return self.Chico + " " + str(self.Fecha)
+        return self.chico + " " + str(self.fecha)
     class Meta:
         verbose_name = "Observaciones Psicologica"
         verbose_name_plural = "Observaciones Psicologicas"
 
 class Taller(models.Model):
-    Nombre = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50)
     def __str__(self):
         return self.Nombre
     class Meta:
         verbose_name_plural = "Talleres"
 
 class Asistencia(models.Model):
-    Fecha = models.DateField()
-    Chico = models.ManyToManyField(Chico)
-    Taller = models.ForeignKey(Taller, on_delete = models.CASCADE, null = True, blank = True)
+    fecha = models.DateField()
+    chico = models.ManyToManyField(Chico)
+    taller = models.ForeignKey(Taller, on_delete = models.CASCADE, null = True, blank = True)
     def __str__(self):
-        return str(self.Fecha)
+        return str(self.fecha)
 
 class Observacion(models.Model):
-    Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
-    Texto = models.TextField(verbose_name='Introducir texto')
-    Fecha = models.DateField(auto_now = True)
-    Taller = models.ForeignKey(Taller, on_delete = models.CASCADE, null = True, blank = True)
+    chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
+    texto = models.TextField(verbose_name='Introducir texto')
+    fecha = models.DateField(auto_now = True)
+    taller = models.ForeignKey(Taller, on_delete = models.CASCADE, null = True, blank = True)
     class Meta:
         verbose_name_plural = "Observaciones"
     def __str__(self):
-        return self.Chico.Nombre + " " + str(self.Fecha)
+        return self.Chico.nombre + " " + str(self.fecha)
 
 class Alimento(models.Model):
-    MEDIDAS = (
+    medidas = (
             ('1', 'Kilos'),
             ('2', 'Gramos'),
             ('3', 'Litros'),
     )
-    Nombre = models.CharField(max_length=50)
-    Cantidad = models.IntegerField()
-    Medidas = models.CharField(max_length=1, choices=MEDIDAS)
-    Fecha_de_vencimiento = models.DateField()
-    Enviado =  models.BooleanField(
+    nombre = models.CharField(max_length=50)
+    cantidad = models.IntegerField()
+    medidas = models.CharField(max_length=1, choices=medidas)
+    fecha_de_vencimiento = models.DateField()
+    enviado =  models.BooleanField(
         _('active'),
         default=False,
         help_text=_(
             'Chequear cuando el alimento sea enviado'
         ))
-    Comedor_destino = models.ForeignKey(Comedor, on_delete = models.CASCADE, null = True, blank = True)
+    comedor_destino = models.ForeignKey(Comedor, on_delete = models.CASCADE, null = True, blank = True)
     def __str__(self):
-        return self.Nombre
+        return self.nombre
 
 class Comida(models.Model):
-    Nombre = models.CharField(max_length=50)
-    Fecha = models.DateField()
+    nombre = models.CharField(max_length=50)
+    fecha = models.DateField()
     def __str__(self):
-        return self.Nombre
+        return self.nombre
 
 class Menu(models.Model):
-    Fecha = models.DateField()
-    Comida = models.ManyToManyField(Comida)
+    fecha = models.DateField()
+    comida = models.ManyToManyField(Comida)
     class Meta:
         verbose_name_plural = "Menús"
     def __str__(self):
-        return ', '.join([x.Nombre for x in self.Comida.all()]) + " " + str(self.Fecha)
+        return ', '.join([x.nombre for x in self.comida.all()]) + " " + str(self.fecha)
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, nivel, password = None):
@@ -169,20 +169,20 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'Usuario'
         verbose_name_plural = 'Usuarios'
-    NIVELES = [
+    niveles = [
         ('1', 'Admin'),
         ('2', 'Psicopedagogo'),
         ('3', 'Psicologo'),
         ('4', 'Cocinero')]
 
     nombre = models.CharField(max_length=50, blank=False)
-    
+
     apellido = models.CharField(max_length=50, blank=False)
 
-    nivel = models.CharField(max_length=1, choices=NIVELES, null = True)
+    nivel = models.CharField(max_length=1, choices=niveles, null = True)
 
     email = models.EmailField(_('email address'), blank=False, unique = True)
-    
+
     is_staff = models.BooleanField(
         _('staff status'),
         default=True,
@@ -234,9 +234,9 @@ def set_perms(sender, instance, created, **kwargs):
     'Can view comedor','Can add comedor','Can delete comedor',
     ]
     if created:
-        if instance.nivel == '1': 
+        if instance.nivel == '1':
             permissions = Permission.objects.filter(name__in = all)
-            instance.user_permissions.set(permissions) 
+            instance.user_permissions.set(permissions)
         elif instance.nivel == '2':
             permissions = Permission.objects.filter(name__in = ['Can view observacionpsico','Can add observacionpsico','Can view asistencia','Can delete asistencia', 'Can view observacion','Can add observacion','Can delete observacion'])
             instance.user_permissions.set(permissions)
@@ -248,4 +248,3 @@ def set_perms(sender, instance, created, **kwargs):
             instance.user_permissions.set(permissions)
 
 post_save.connect(set_perms, sender = MyUser)
-
