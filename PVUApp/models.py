@@ -87,16 +87,17 @@ class Observacion_psico(models.Model):
 class Taller(models.Model):
     nombre = models.CharField(max_length=50)
     def __str__(self):
-        return self.Nombre
+        return self.nombre
     class Meta:
         verbose_name_plural = "Talleres"
 
 class Asistencia(models.Model):
     fecha = models.DateField()
-    chico = models.ManyToManyField(Chico)
+    chico = models.ManyToManyField(Chico, related_name='chico')
     taller = models.ForeignKey(Taller, on_delete = models.CASCADE, null = True, blank = True)
+
     def __str__(self):
-        return str(self.fecha)
+        return str(self.taller)+": " +str(self.fecha)
 
 class Observacion(models.Model):
     chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
@@ -106,7 +107,7 @@ class Observacion(models.Model):
     class Meta:
         verbose_name_plural = "Observaciones"
     def __str__(self):
-        return self.Chico.nombre + " " + str(self.fecha)
+        return self.chico.nombre + " " + str(self.fecha)
 
 class Alimento(models.Model):
     medidas = (
