@@ -29,13 +29,27 @@ import json
 from django.contrib.auth.forms import *
 from django.contrib.auth.models import Permission
 from django.shortcuts import redirect
+from datetime import datetime
+
+class AsistenciAdmin(admin.ModelAdmin):
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        timestr = datetime.now() 
+        form.cleaned_data['Chico'] = Chico.objects.filter(pk__in=dict(request.POST).get('chico'))
+        super(AsistenciAdmin, self).save_model(request, obj, form, change)
+   
+        for x in form.cleaned_data['Chico']:
+            print(x.nombre)
+            descripcion = ("El alumno: " + x.nombre + " asistio al taller " +str(obj.taller)+" el dia "+ timestr.strftime("%m/%d/%Y, %H:%M:%S")+ ".\nCorroborado por " + str(obj.user))
+            Observacion.objects.create(chico = x, texto = descripcion, fecha = timestr, taller = obj.taller)
+        
 
 admin.site.register(Persona)
 admin.site.register(Chico)
 admin.site.register(Familiar)
 admin.site.register(Observacion_psico)
 admin.site.register(Taller)
-admin.site.register(Asistencia)
+admin.site.register(Asistencia,AsistenciAdmin)
 admin.site.register(Observacion)
 admin.site.register(Alimento)
 admin.site.register(Comida)
