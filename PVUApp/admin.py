@@ -29,26 +29,41 @@ import json
 from django.contrib.auth.forms import *
 from django.contrib.auth.models import Permission
 from django.shortcuts import redirect
+from datetime import datetime
+
+class AsistenciAdmin(admin.ModelAdmin):
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        timestr = datetime.now() 
+        form.cleaned_data['Chico'] = Chico.objects.filter(pk__in=dict(request.POST).get('chico'))
+        super(AsistenciAdmin, self).save_model(request, obj, form, change)
+   
+        for x in form.cleaned_data['Chico']:
+            print(x.nombre)
+            descripcion = ("El alumno: " + x.nombre + " asistio al taller " +str(obj.taller)+" el dia "+ timestr.strftime("%m/%d/%Y, %H:%M:%S")+ ".\nCorroborado por " + str(obj.user))
+            Observacion.objects.create(chico = x, texto = descripcion, fecha = timestr, taller = obj.taller)
+        
 
 admin.site.register(Persona)
-admin.site.register(Religion)
-admin.site.register(Domicilio)
 admin.site.register(Chico)
 admin.site.register(Familiar)
-admin.site.register(Observacionpsico)
+admin.site.register(Observacion_psico)
 admin.site.register(Taller)
-admin.site.register(Asistencia)
+admin.site.register(Asistencia,AsistenciAdmin)
 admin.site.register(Observacion)
-admin.site.register(Ingrediente)
+admin.site.register(Alimento)
 admin.site.register(Comida)
 admin.site.register(Menu)
+admin.site.register(Psico_chico)
+admin.site.register(Comedor)
 
 
 csrf_protect_m = method_decorator(csrf_protect)
 sensitive_post_parameters_m = method_decorator(sensitive_post_parameters())
 
-admin.site.site_header = _("PVU Administration")
-admin.site.site_title = _("My PVU Admin")
+admin.site.index_title = _("PVU")
+admin.site.site_header = _("Personas Voluntarias Unidas")
+admin.site.site_title = _("Personas Voluntarias Unidas")
 
 class MyUserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required

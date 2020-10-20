@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
-
 class PVUappConfig(AppConfig):
-    name = 'PVUApp'
+    name = 'PVUapp'
+    verbose_name = "Personas Voluntarias Unidas"

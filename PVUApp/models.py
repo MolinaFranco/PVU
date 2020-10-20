@@ -9,33 +9,51 @@ from django.db.models.signals import post_save
 
 #class Ejemplo(models.Model):
 #    def __str__(self):
-#        return 
+#        return
 
 class Persona(models.Model):
-    Nombre = models.CharField(max_length=50)
-    Apellido = models.CharField(max_length=50)
-    Edad = models.IntegerField()
+    nombre = models.CharField(max_length=50)
+    apellido = models.CharField(max_length=50)
+    edad = models.IntegerField()
     def __str__(self):
-        return Nombre + Apellido
-    
-class Religion(models.Model):
-    Nombre = models.CharField(max_length=50)
-    def __str__(self):
-        return Nombre
+        return self.nombre + " " + self.apellido
 
-class Domicilio(models.Model):
-    Calle = models.CharField(max_length=50)
-    Numero = models.IntegerField()
-    Piso = models.IntegerField(blank=True)
-    Complejo = models.CharField(blank=True, max_length=50)
+
+class Comedor(models.Model):
+    nombre = models.CharField(max_length=50)
+    calle = models.CharField(max_length=50, null = True)
+    numero = models.IntegerField(null = True)
+    complejo = models.CharField(blank=True, max_length=50)
+    class Meta:
+         verbose_name_plural = "Comedores"
+    def __str__(self):
+        return self.nombre
 
 class Chico(Persona):
-    Fecha_nacimiento = models.DateField()
-    Religion = models.ForeignKey(Religion, on_delete = models.CASCADE, null = True, blank = True)
-    Domicilio = models.ForeignKey(Domicilio, on_delete = models.CASCADE, null = True, blank = True)
+    generos = (
+            ('1', 'Masculino'),
+            ('2', 'Femenino'),
+            ('3', 'Otros'),
+    )
+    fecha_nacimiento = models.DateField()
+    comedor = models.ForeignKey(Comedor, on_delete = models.CASCADE, null = True, blank = True)
+    genero = models.CharField(max_length=1, choices=generos, default=1)
+
+class Psico_chico(Persona):
+    generos = (
+            ('1', 'Masculino'),
+            ('2', 'Femenino'),
+            ('3', 'Otros'),
+    )
+    fecha_nacimiento = models.DateField()
+    genero = models.CharField(max_length=1, choices=generos, default=1)
+    Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True, verbose_name='En caso de ser un chico de un comerdor ya existente')
+    class Meta:
+         verbose_name = "Chico del programa de psicologia"
+         verbose_name_plural = "Chicos del programa de psicologia"
 
 class Familiar(Persona):
-    PARENTESCOS = (
+    parentesco = (
             ('1', 'Padre'),
             ('2', 'Madre'),
             ('3', 'Tio'),
@@ -45,53 +63,85 @@ class Familiar(Persona):
             ('7', 'Abuelo'),
             ('8', 'Abuela'),
     )
-    Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
-    Parentesco = models.CharField(max_length=1, choices=PARENTESCOS)
-    Trabajo = models.CharField(max_length=50)
+    Chico = models.ForeignKey(Chico , on_delete = models.CASCADE, null = True, blank = True)
+    Psico_chico = models.ForeignKey(Psico_chico, on_delete = models.CASCADE, null = True, blank = True)
+    parentesco = models.CharField(max_length=1, choices=parentesco)
+    trabajo = models.CharField(max_length=50)
+    class Meta:
+         verbose_name_plural = "Familiares"
 
-class Observacionpsico(models.Model):
-    Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
-    Texto = models.TextField(verbose_name='Introducir texto')
-    Fecha = models.DateField(auto_now = True)
-    Alergias = models.CharField(max_length=50)
-    Altura = models.IntegerField()
-    Altura = models.CharField(max_length=50)
-    Peso = models.IntegerField()
+class Observacion_psico(models.Model):
+    chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
+    texto = models.TextField(verbose_name='Introducir texto')
+    fecha = models.DateField(auto_now = True)
+    alergias = models.CharField(max_length=50)
+    altura = models.IntegerField()
+    altura = models.CharField(max_length=50)
+    peso = models.IntegerField()
+    def __str__(self):
+        return self.chico + " " + str(self.fecha)
+    class Meta:
+        verbose_name = "Observaciones Psicologica"
+        verbose_name_plural = "Observaciones Psicologicas"
 
 class Taller(models.Model):
-    Nombre = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50)
     def __str__(self):
-        return Nombre
+        return self.nombre
+    class Meta:
+        verbose_name_plural = "Talleres"
 
 class Asistencia(models.Model):
-    Fecha = models.DateField()
-    Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
-    Taller = models.ForeignKey(Taller, on_delete = models.CASCADE, null = True, blank = True)
+    fecha = models.DateField()
+    chico = models.ManyToManyField(Chico, related_name='chico')
+    taller = models.ForeignKey(Taller, on_delete = models.CASCADE, null = True, blank = True)
+
+    def __str__(self):
+        return str(self.taller)+": " +str(self.fecha)
 
 class Observacion(models.Model):
-    Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
-    Texto = models.TextField(verbose_name='Introducir texto')
-    Fecha = models.DateField(auto_now = True)
-    Taller = models.ForeignKey(Taller, on_delete = models.CASCADE, null = True, blank = True)
-
-class Ingrediente(models.Model):
-    Nombre = models.CharField(max_length=50)
-    Cantidad = models.IntegerField()
-    Tipo_de_alimento = models.CharField(max_length=50)
-    Fecha_de_vencimiento = models.DateField()
+    chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
+    texto = models.TextField(verbose_name='Introducir texto')
+    fecha = models.DateField(auto_now = True)
+    taller = models.ForeignKey(Taller, on_delete = models.CASCADE, null = True, blank = True)
+    class Meta:
+        verbose_name_plural = "Observaciones"
     def __str__(self):
-        return Nombre
+        return self.chico.nombre + " " + str(self.fecha)
+
+class Alimento(models.Model):
+    medidas = (
+            ('1', 'Kilos'),
+            ('2', 'Gramos'),
+            ('3', 'Litros'),
+    )
+    nombre = models.CharField(max_length=50)
+    cantidad = models.IntegerField()
+    medidas = models.CharField(max_length=1, choices=medidas)
+    fecha_de_vencimiento = models.DateField()
+    enviado =  models.BooleanField(
+        _('active'),
+        default=False,
+        help_text=_(
+            'Chequear cuando el alimento sea enviado'
+        ))
+    comedor_destino = models.ForeignKey(Comedor, on_delete = models.CASCADE, null = True, blank = True)
+    def __str__(self):
+        return self.nombre
 
 class Comida(models.Model):
-    Nombre = models.CharField(max_length=50)
-    Ingrediente = models.ManyToManyField(Ingrediente)
-    Fecha = models.DateField()
+    nombre = models.CharField(max_length=50)
+    fecha = models.DateField()
     def __str__(self):
-        return Nombre
+        return self.nombre
 
 class Menu(models.Model):
-    Fecha = models.DateField()
-    Comida = models.ManyToManyField(Comida)
+    fecha = models.DateField()
+    comida = models.ManyToManyField(Comida)
+    class Meta:
+        verbose_name_plural = "Menús"
+    def __str__(self):
+        return ', '.join([x.nombre for x in self.comida.all()]) + " " + str(self.fecha)
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, nivel, password = None):
@@ -104,14 +154,14 @@ class MyUserManager(BaseUserManager):
         user_obj.is_staff = True
         user_obj.is_active = True
         user_obj.save(using=self.db)
-        return user_obj
+        return self.user_obj
     def create_superuser(self, email, password = None):
         user_obj = self.model(
             email = self.normalize_email(email))
         user_obj.set_password(password)
         user_obj.is_superuser = True
         user_obj.save(using=self.db)
-        return user_obj
+        return self.user_obj
 
 
 class MyUser(AbstractBaseUser, PermissionsMixin):
@@ -120,19 +170,20 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'Usuario'
         verbose_name_plural = 'Usuarios'
-    NIVELES = [
+    niveles = [
         ('1', 'Admin'),
         ('2', 'Psicopedagogo'),
-        ('3', 'Cocinero')]
+        ('3', 'Psicologo'),
+        ('4', 'Cocinero')]
 
     nombre = models.CharField(max_length=50, blank=False)
-    
+
     apellido = models.CharField(max_length=50, blank=False)
 
-    nivel = models.CharField(max_length=1, choices=NIVELES, null = True)
+    nivel = models.CharField(max_length=1, choices=niveles, null = True)
 
     email = models.EmailField(_('email address'), blank=False, unique = True)
-    
+
     is_staff = models.BooleanField(
         _('staff status'),
         default=True,
@@ -171,27 +222,30 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 
 def set_perms(sender, instance, created, **kwargs):
     all = ['Can view religion','Can add religion','Can delete reparacion',
-    'Can view domicilio','Can add domicilio','Can delete domicilio',
     'Can view chico','Can add chico','Can delete chico',
     'Can view familiar','Can add familiar','Can delete familiar',
-    'Can view observacionpsico','Can add observacionpsico','Can delete observacionpsico',
+    'Can view observacion_psico','Can add observacion_psico','Can delete observacion_psico',
     'Can view taller','Can add taller','Can delete taller',
     'Can view asistencia','Can add asistencia','Can delete asistencia',
     'Can view observacion','Can add observacion','Can delete observacion',
     'Can view comida','Can add comida','Can delete comida',
     'Can view menu','Can add menu','Can delete menu',
     'Can view ingrediente','Can add ingrediente','Can delete ingrediente',
+    'Can view psico_chico','Can add psico_chico','Can delete psico_chico',
+    'Can view comedor','Can add comedor','Can delete comedor',
     ]
     if created:
-        if instance.nivel == '1': 
+        if instance.nivel == '1':
             permissions = Permission.objects.filter(name__in = all)
-            instance.user_permissions.set(permissions) 
+            instance.user_permissions.set(permissions)
         elif instance.nivel == '2':
-            permissions = Permission.objects.filter(name__in = ['Can view observacionpsico','Can add observacionpsico','Can view asistencia','can add asistencia','Can delete asistencia', 'Can view observacion','Can add observacion','Can delete observacion'])
+            permissions = Permission.objects.filter(name__in = ['Can view observacionpsico','Can add observacionpsico','Can view asistencia','Can delete asistencia', 'Can view observacion','Can add observacion','Can delete observacion'])
             instance.user_permissions.set(permissions)
         elif instance.nivel == '3':
+            permissions = Permission.objects.filter(name__in = ['Can view psico_chico','Can add psico_chico','Can view chico','Can add chico','Can view observacion_psico','Can add observacion_psico','Can delete observacion_psico'])
+            instance.user_permissions.set(permissions)
+        elif instance.nivel == '4':
             permissions = Permission.objects.filter(name__in = ['Can view comida','Can add comida','Can delete comida','Can view menu','Can add menu','Can delete menu', 'Can view ingrediente','Can add ingrediente','Can delete ingrediente',])
             instance.user_permissions.set(permissions)
 
 post_save.connect(set_perms, sender = MyUser)
-
