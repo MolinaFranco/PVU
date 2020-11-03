@@ -79,7 +79,7 @@ class Observacion_psico(models.Model):
     altura = models.CharField(max_length=50)
     peso = models.IntegerField()
     def __str__(self):
-        return self.chico + " " + str(self.fecha)
+        return self.chico.nombre + " " + str(self.fecha)
     class Meta:
         verbose_name = "Observaciones Psicologica"
         verbose_name_plural = "Observaciones Psicologicas"
