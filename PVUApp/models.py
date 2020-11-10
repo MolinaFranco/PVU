@@ -47,7 +47,7 @@ class Psico_chico(Persona):
     )
     fecha_nacimiento = models.DateField()
     genero = models.CharField(max_length=1, choices=generos, default=1)
-    Chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True, verbose_name='En caso de ser un chico de un comerdor ya existente')
+
     class Meta:
          verbose_name = "Chico del programa de psicologia"
          verbose_name_plural = "Chicos del programa de psicologia"
@@ -63,8 +63,8 @@ class Familiar(Persona):
             ('7', 'Abuelo'),
             ('8', 'Abuela'),
     )
-    Chico = models.ForeignKey(Chico , on_delete = models.CASCADE, null = True, blank = True)
-    Psico_chico = models.ForeignKey(Psico_chico, on_delete = models.CASCADE, null = True, blank = True)
+    familia_de = models.ForeignKey(Chico , on_delete = models.CASCADE, null = True, blank = True)
+    o_familia_de = models.ForeignKey(Psico_chico, on_delete = models.CASCADE, null = True, blank = True)
     parentesco = models.CharField(max_length=1, choices=parentesco)
     trabajo = models.CharField(max_length=50)
     class Meta:
@@ -72,6 +72,7 @@ class Familiar(Persona):
 
 class Observacion_psico(models.Model):
     chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
+    chico_psico = models.ForeignKey(Psico_chico, on_delete = models.CASCADE, null = True, blank = True)
     texto = models.TextField(verbose_name='Introducir texto')
     fecha = models.DateField(auto_now = True)
     alergias = models.CharField(max_length=50)
@@ -79,7 +80,7 @@ class Observacion_psico(models.Model):
     altura = models.CharField(max_length=50)
     peso = models.IntegerField()
     def __str__(self):
-        return self.chico.nombre + " " + str(self.fecha)
+        return self.chico + " " + str(self.fecha)
     class Meta:
         verbose_name = "Observaciones Psicologica"
         verbose_name_plural = "Observaciones Psicologicas"
@@ -154,14 +155,14 @@ class MyUserManager(BaseUserManager):
         user_obj.is_staff = True
         user_obj.is_active = True
         user_obj.save(using=self.db)
-        return self.user_obj
+        return user_obj
     def create_superuser(self, email, password = None):
         user_obj = self.model(
             email = self.normalize_email(email))
         user_obj.set_password(password)
         user_obj.is_superuser = True
         user_obj.save(using=self.db)
-        return self.user_obj
+        return user_obj
 
 
 class MyUser(AbstractBaseUser, PermissionsMixin):
