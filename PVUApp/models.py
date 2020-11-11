@@ -39,6 +39,9 @@ class Chico(Persona):
     comedor = models.ForeignKey(Comedor, on_delete = models.CASCADE, null = True, blank = True)
     genero = models.CharField(max_length=1, choices=generos, default=1)
 
+    def __str__(self) -> str:
+        return super().__str__()
+
 class Psico_chico(Persona):
     generos = (
             ('1', 'Masculino'),
@@ -80,7 +83,7 @@ class Observacion_psico(models.Model):
     altura = models.CharField(max_length=50)
     peso = models.IntegerField()
     def __str__(self):
-        return self.chico + " " + str(self.fecha)
+        return str(self.chico) + " " + str(self.fecha)
     class Meta:
         verbose_name = "Observaciones Psicologica"
         verbose_name_plural = "Observaciones Psicologicas"
