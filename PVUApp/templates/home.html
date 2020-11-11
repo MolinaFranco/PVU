@@ -1,67 +1,92 @@
 <html>
-
-<head>
-  <link rel="icon" href="https://i.ibb.co/c1yxfVY/pngwing-com.png" type="image/icon type">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-  <title>PVU</title>
-</head>
-
-<body>
-  <div id="app">
-    <v-app style="background-color: #e3f2fd;">
-        <div v-cloak>
+  <head>
+    <link
+      rel="icon"
+      href="https://i.ibb.co/c1yxfVY/pngwing-com.png"
+      type="image/icon type"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <title>PVU</title>
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+      .v-card__title {
+        word-break: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <v-app style="background-color: #e3f2fd">
+        <div>
           <v-carousel>
-            <v-carousel-item v-for="(item,i) in items" :key="i" :src="item.src" reverse-transition="fade-transition"
-              transition="fade-transition">
+            <v-carousel-item
+              v-for="(item,i) in items"
+              :key="i"
+              :src="item.src"
+              reverse-transition="fade-transition"
+              transition="fade-transition"
+            >
               <v-row align="center" class="mt-10">
                 <v-col class="text-center" cols="12">
-                <v-row justify="center" align="center">
-                  <h1
-                    class="font-weight-regular"
-                    style="color: #e3f2fd"
-                    :class="{
+                  <v-row justify="center" align="center">
+                    <h1
+                      class="font-weight-regular"
+                      style="color: #e3f2fd"
+                      :class="{
                       subheading: $vuetify.breakpoint.smAndDown,
                       'display-4': $vuetify.breakpoint.mdAndUp,
                     }"
-                  >
-                    Personas
-                  </h1>
-                </v-row>
-                <v-row justify="center" align="center">
-                  <h1
-                    class="font-weight-regular"
-                    style="color: #e3f2fd"
-                    :class="{
+                    >
+                      Personas
+                    </h1>
+                  </v-row>
+                  <v-row justify="center" align="center">
+                    <h1
+                      class="font-weight-regular"
+                      style="color: #e3f2fd"
+                      :class="{
                       subheading: $vuetify.breakpoint.smAndDown,
                       'display-4': $vuetify.breakpoint.mdAndUp,
                     }"
-                  >
-                    Voluntarias
-                  </h1>
-                </v-row>
-                <v-row justify="center" align="center">
-                  <h1
-                    class="font-weight-regular"
-                    style="color: #e3f2fd"
-                    :class="{
+                    >
+                      Voluntarias
+                    </h1>
+                  </v-row>
+                  <v-row justify="center" align="center">
+                    <h1
+                      class="font-weight-regular"
+                      style="color: #e3f2fd"
+                      :class="{
                       subheading: $vuetify.breakpoint.smAndDown,
                       'display-4': $vuetify.breakpoint.mdAndUp,
                     }"
-                  >
-                    Unidas
-                  </h1>
-                </v-row>
+                    >
+                      Unidas
+                    </h1>
+                  </v-row>
                 </v-col>
               </v-row>
-    
-    
             </v-carousel-item>
-            </v-carousel>
+          </v-carousel>
           <v-spacer></v-spacer>
-          <v-card max-width="100%" style="background-color: transparent;">
+          <v-card max-width="100%" style="background-color: transparent">
             <v-container>
               <v-row dense>
                 <v-col cols="12" md="6" sm="6" align="center">
@@ -84,11 +109,16 @@
                   <v-card color="primary" dark>
                     <div class="d-flex flex-no-wrap justify-space-between">
                       <div>
-                        <v-card-title class="headline">Observaciones</v-card-title>
-                        <v-card-subtitle>Vea las observaciones de los alumnos
+                        <v-card-title class="headline"
+                          >Observaciones</v-card-title
+                        >
+                        <v-card-subtitle
+                          >Vea las observaciones de los alumnos
                         </v-card-subtitle>
                         <v-card-actions>
-                          <v-btn text href="/adminPVUApp/observacion/">Ir Ahora</v-btn>
+                          <v-btn text href="/adminPVUApp/observacion/"
+                            >Ir Ahora</v-btn
+                          >
                         </v-card-actions>
                       </div>
                       <v-avatar class="ma-3 rounded" size="125" tile>
@@ -103,10 +133,13 @@
                     <div class="my-4 d-flex flex-no-wrap justify-space-between">
                       <div>
                         <v-card-title class="headline">Asistencia</v-card-title>
-                        <v-card-subtitle>Vea la asistencia de el alumnado
+                        <v-card-subtitle
+                          >Vea la asistencia de el alumnado
                         </v-card-subtitle>
                         <v-card-actions>
-                          <v-btn text href="/adminPVUApp/asistencia/">Ir Ahora</v-btn>
+                          <v-btn text href="/adminPVUApp/asistencia/"
+                            >Ir Ahora</v-btn
+                          >
                         </v-card-actions>
                       </div>
                       <v-avatar class="ma-3 rounded" size="125" tile>
@@ -117,15 +150,22 @@
                   <v-card color="#952175" dark>
                     <div class="d-flex flex-no-wrap justify-space-between">
                       <div>
-                        <v-card-title class="headline">Inventario de Comida</v-card-title>
-                        <v-card-subtitle>Vea el inventario de comida actual de la institucion
+                        <v-card-title class="headline"
+                          >Inventario de Comida</v-card-title
+                        >
+                        <v-card-subtitle
+                          >Vea el inventario de comida actual de la institucion
                         </v-card-subtitle>
                         <v-card-actions>
-                          <v-btn text href="/adminPVUApp/comida/">Ir Ahora</v-btn>
+                          <v-btn text href="/adminPVUApp/comida/"
+                            >Ir Ahora</v-btn
+                          >
                         </v-card-actions>
                       </div>
                       <v-avatar class="ma-3 rounded" size="125" tile>
-                        <v-img src="https://i.ibb.co/f0TRpdb/comida.jpg"></v-img>
+                        <v-img
+                          src="https://i.ibb.co/f0TRpdb/comida.jpg"
+                        ></v-img>
                       </v-avatar>
                     </div>
                   </v-card>
@@ -136,71 +176,88 @@
                   <v-card color="#00bfa5" dark>
                     <div class="my-4 d-flex flex-no-wrap justify-space-between">
                       <div>
-                        <v-card-title class="headline">¿Queres ser voluntario?</v-card-title>
+                        <v-card-title class="headline"
+                          >¿Queres ser voluntario?</v-card-title
+                        >
                         <v-card-subtitle>
-                          Voluntariado Educativo y Social que brinda asistencia a comedores y merenderos en Cordoba Capital e interior
+                          Voluntariado Educativo y Social que brinda asistencia
+                          a comedores y merenderos en Cordoba Capital e interior
                         </v-card-subtitle>
                         <v-card-actions>
-                          <v-btn text target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfQUDD8mWkkwrHFWknuigq041CgVu-MNfjJA6j6JkngG9isUg/viewform?usp=sf_link">Ir Ahora</v-btn>
+                          <v-btn
+                            text
+                            target="_blank"
+                            href="https://docs.google.com/forms/d/e/1FAIpQLSfQUDD8mWkkwrHFWknuigq041CgVu-MNfjJA6j6JkngG9isUg/viewform?usp=sf_link"
+                            >Ir Ahora</v-btn
+                          >
                         </v-card-actions>
                       </div>
                       <v-avatar class="ma-3 rounded" size="125" tile>
-                        <v-img src="https://i.ibb.co/xq5Bvjf/Whats-App-Image-2020-11-09-at-8-21-41-PM.jpg"></v-img>
+                        <v-img
+                          src="https://i.ibb.co/xq5Bvjf/Whats-App-Image-2020-11-09-at-8-21-41-PM.jpg"
+                        ></v-img>
                       </v-avatar>
                     </div>
                   </v-card>
-    
                 </v-col>
               </v-row>
             </v-container>
           </v-card>
-          <v-footer padless style="background-color: #8aacc8;">
+          <v-footer padless style="background-color: #8aacc8">
             <v-col class="text-center" cols="12">
-            <v-btn icon target="_blank" href="https://wa.link/hxhjpq"> 
-              <v-icon>mdi-whatsapp</v-icon>
-            </v-btn>
-    
-            <v-btn icon target="_blank" href="mailto:pvunidas@gmail.com?Subject=Personas%20voluntarias%20unidas%20"> 
-              <v-icon>mdi-gmail</v-icon>
-            </v-btn>
-            <v-btn icon target="_blank" href="https://www.instagram.com/pvunidas"> 
-              <v-icon>mdi-instagram</v-icon>
-            </v-btn>
-            <v-btn icon target="_blank" href="https://www.facebook.com/pvunidas"> 
-              <v-icon>mdi-facebook</v-icon>
-            </v-btn>- 2020 - <strong>Personas Voluntarias Unidas</strong>
+              <v-btn icon target="_blank" href="https://wa.link/hxhjpq">
+                <v-icon>mdi-whatsapp</v-icon>
+              </v-btn>
+
+              <v-btn
+                icon
+                target="_blank"
+                href="mailto:pvunidas@gmail.com?Subject=Personas%20voluntarias%20unidas%20"
+              >
+                <v-icon>mdi-gmail</v-icon>
+              </v-btn>
+              <v-btn
+                icon
+                target="_blank"
+                href="https://www.instagram.com/pvunidas"
+              >
+                <v-icon>mdi-instagram</v-icon>
+              </v-btn>
+              <v-btn
+                icon
+                target="_blank"
+                href="https://www.facebook.com/pvunidas"
+              >
+                <v-icon>mdi-facebook</v-icon> </v-btn
+              >- 2020 - <strong>Personas Voluntarias Unidas</strong>
             </v-col>
           </v-footer>
         </div>
-    </v-app>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-  <script>
-    new Vue({
-      el: '#app',
-      vuetify: new Vuetify(),
-      data() {
-        return {
-          items: [
-            {
-              src: 'https://i.ibb.co/7CpL8ZX/74288582-1468483883307690-6887282600927297536-o.jpg',
-            },
-            {
-              src: 'https://i.ibb.co/yP0sfCd/73523468-1681685781987498-4963745009670437465-o.jpg',
-            },
-          ],
-        }
-      },
-
-    })
-  </script>
-</body>
-
+      </v-app>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+      window.addEventListener('load', () => {
+        new Vue({
+          el: '#app',
+          vuetify: new Vuetify(),
+          data() {
+            return {
+              items: [
+                {
+                  src:
+                    'https://i.ibb.co/7CpL8ZX/74288582-1468483883307690-6887282600927297536-o.jpg',
+                },
+                {
+                  src:
+                    'https://i.ibb.co/yP0sfCd/73523468-1681685781987498-4963745009670437465-o.jpg',
+                },
+              ],
+            };
+          },
+        });
+      });
+    </script>
+  </body>
 </html>
-
-<style scoped>
-  [v-cloak]{
-    display: none;
-  }
-</style>
