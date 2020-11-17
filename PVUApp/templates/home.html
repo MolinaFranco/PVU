@@ -35,7 +35,7 @@
     <div id="app" v-cloak>
       <v-app style="background-color: #e3f2fd">
         <div>
-          <v-carousel>
+          <v-carousel cycle class="mb-1 pb-1">
             <v-carousel-item
               v-for="(item,i) in items"
               :key="i"
@@ -85,12 +85,78 @@
               </v-row>
             </v-carousel-item>
           </v-carousel>
-          <v-spacer></v-spacer>
-          <v-card max-width="100%" style="background-color: transparent">
-            <v-container>
-              <v-row dense>
-                <v-col cols="12" md="6" sm="6" align="center">
-                  <v-card color="indigo" dark>
+          <v-container style="color:transparent" class="mt-0 pt-0">
+          <v-row dense>
+            <v-col cols="12" md="12" sm="12" class="my-0 py-0">
+              <v-card color="#751a5c" dark class="my-0 py-0">
+                <div class="mt-4 d-flex flex-no-wrap justify-space-between">
+                  <div>
+                    <v-card-title class="headline"
+                      >¿Que es PVU?</v-card-title
+                    >
+                    <v-card-subtitle>
+                      Voluntariado Educativo y Social que brinda asistencia
+                      a comedores y merenderos en Cordoba Capital e interior
+                    </v-card-subtitle>
+                  </div>
+                  <v-avatar class="ma-3 rounded" size="125" tile>
+                    <v-img
+                      src="https://i.ibb.co/X8GLcNt/iconopvu.jpg"
+                    ></v-img>
+                  </v-avatar>
+                </div>
+              </v-card>
+            </v-col>
+                <v-col cols="12" md="6" sm="6" class="my-0 py-0">
+                  <v-card color="#a52582" dark>
+                    <div class="my-4 d-flex flex-no-wrap justify-space-between">
+                      <div>
+                        <v-card-title class="headline">¿Queres ser voluntario?</v-card-title>
+                        <v-card-subtitle>
+                          Voluntariado Educativo y Social que brinda asistencia
+                      a comedores y merenderos en Cordoba Capital e interior
+                        </v-card-subtitle>
+                        <v-card-actions>
+                          <v-btn
+                        text
+                        target="_blank"
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSfQUDD8mWkkwrHFWknuigq041CgVu-MNfjJA6j6JkngG9isUg/viewform?usp=sf_link"
+                        >Ir Ahora</v-btn
+                      >
+                        </v-card-actions>
+                      </div>
+                      <v-avatar class="ma-3 rounded" size="125" tile>
+                        <v-img src="https://i.ibb.co/xq5Bvjf/Whats-App-Image-2020-11-09-at-8-21-41-PM.jpg"></v-img>
+                      </v-avatar>
+                    </div>
+                  </v-card>
+                </v-col>
+                <v-spacer></v-spacer>
+                <v-col cols="12" md="6" sm="6"  class="my-0 py-0">
+                  <v-card color="#a52582" dark>
+                    <div class="my-4 d-flex flex-no-wrap justify-space-between">
+                      <div>
+                        <v-card-title class="headline">¿Queres ser donante?</v-card-title>
+                        <v-card-subtitle
+                          >Aceptamos alimentos no perecederos, carne, pollo, verduras y utiles
+                        </v-card-subtitle>
+                        <v-card-actions>
+                          <v-btn
+                        text
+                        target="_blank"
+                        href="#"
+                        >Ir Ahora</v-btn
+                      >
+                        </v-card-actions>
+                      </div>
+                      <v-avatar class="ma-3 rounded" size="125" tile>
+                        <v-img src="https://i.ibb.co/HdtTWsT/donante.jpg"></v-img>
+                      </v-avatar>
+                    </div>
+                  </v-card>
+                </v-col>
+                <v-col cols="12" md="6" sm="6" align="center" class="my-0 py-0">
+                  <v-card color="#1F7087" dark>
                     <div class="my-4 d-flex flex-no-wrap justify-space-between">
                       <div>
                         <v-card-title class="headline">Menu</v-card-title>
@@ -106,7 +172,7 @@
                       </v-avatar>
                     </div>
                   </v-card>
-                  <v-card color="primary" dark>
+                  <v-card color="indigo " dark>
                     <div class="d-flex flex-no-wrap justify-space-between">
                       <div>
                         <v-card-title class="headline"
@@ -127,9 +193,8 @@
                     </div>
                   </v-card>
                 </v-col>
-                <v-spacer></v-spacer>
-                <v-col cols="12" md="6" sm="6" align="center">
-                  <v-card color="#1F7087" dark>
+                <v-col cols="12" md="6" sm="6" align="center" class="my-0 py-0">
+                  <v-card color="#009688" dark>
                     <div class="my-4 d-flex flex-no-wrap justify-space-between">
                       <div>
                         <v-card-title class="headline">Asistencia</v-card-title>
@@ -147,7 +212,7 @@
                       </v-avatar>
                     </div>
                   </v-card>
-                  <v-card color="#952175" dark>
+                  <v-card color="primary" dark>
                     <div class="d-flex flex-no-wrap justify-space-between">
                       <div>
                         <v-card-title class="headline"
@@ -171,38 +236,8 @@
                   </v-card>
                 </v-col>
               </v-row>
-              <v-row dense>
-                <v-col cols="12" md="12" sm="12" align="center">
-                  <v-card color="#00bfa5" dark>
-                    <div class="my-4 d-flex flex-no-wrap justify-space-between">
-                      <div>
-                        <v-card-title class="headline"
-                          >¿Queres ser voluntario?</v-card-title
-                        >
-                        <v-card-subtitle>
-                          Voluntariado Educativo y Social que brinda asistencia
-                          a comedores y merenderos en Cordoba Capital e interior
-                        </v-card-subtitle>
-                        <v-card-actions>
-                          <v-btn
-                            text
-                            target="_blank"
-                            href="https://docs.google.com/forms/d/e/1FAIpQLSfQUDD8mWkkwrHFWknuigq041CgVu-MNfjJA6j6JkngG9isUg/viewform?usp=sf_link"
-                            >Ir Ahora</v-btn
-                          >
-                        </v-card-actions>
-                      </div>
-                      <v-avatar class="ma-3 rounded" size="125" tile>
-                        <v-img
-                          src="https://i.ibb.co/xq5Bvjf/Whats-App-Image-2020-11-09-at-8-21-41-PM.jpg"
-                        ></v-img>
-                      </v-avatar>
-                    </div>
-                  </v-card>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-card>
+        </v-container>
+
           <v-footer padless style="background-color: #8aacc8">
             <v-col class="text-center" cols="12">
               <v-btn icon target="_blank" href="https://wa.link/hxhjpq">
@@ -251,6 +286,10 @@
                 },
                 {
                   src:
+                    'https://i.ibb.co/d4JCW5V/118030608-1735366049952804-5621280204442170025-o.jpg',
+                },
+                {
+                  src:
                     'https://i.ibb.co/yP0sfCd/73523468-1681685781987498-4963745009670437465-o.jpg',
                 },
               ],
@@ -259,5 +298,4 @@
         });
       });
     </script>
-  </body>
 </html>
