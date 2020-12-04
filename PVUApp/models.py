@@ -14,7 +14,6 @@ from django.db.models.signals import post_save
 class Persona(models.Model):
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
-    edad = models.IntegerField()
     def __str__(self):
         return self.nombre + " " + self.apellido
 
@@ -39,6 +38,12 @@ class Chico(Persona):
     comedor = models.ForeignKey(Comedor, on_delete = models.CASCADE, null = True, blank = True)
     genero = models.CharField(max_length=1, choices=generos, default=1)
 
+    def Edad(self):
+        import datetime
+        self.edad = ((datetime.date.today().year - self.fecha_nacimiento.year))
+        return self.edad
+            
+
     def __str__(self) -> str:
         return super().__str__()
 
@@ -50,6 +55,11 @@ class Psico_chico(Persona):
     )
     fecha_nacimiento = models.DateField()
     genero = models.CharField(max_length=1, choices=generos, default=1)
+
+    def Edad(self):
+        import datetime
+        self.edad = ((datetime.date.today().year - self.fecha_nacimiento.year))
+        return self.edad
 
     class Meta:
          verbose_name = "Chico del programa de psicologia"
@@ -122,9 +132,9 @@ class Alimento(models.Model):
     nombre = models.CharField(max_length=50)
     cantidad = models.IntegerField()
     medidas = models.CharField(max_length=1, choices=medidas)
-    fecha_de_vencimiento = models.DateField()
+    vencimiento = models.DateField()
     enviado =  models.BooleanField(
-        _('active'),
+        _('enviado'),
         default=False,
         help_text=_(
             'Chequear cuando el alimento sea enviado'
