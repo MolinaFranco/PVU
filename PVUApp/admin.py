@@ -52,7 +52,7 @@ class ChicoAdmin(admin.ModelAdmin):
     search_fields = ['nombre', 'apellido']
     list_filter = ('comedor','genero')
 
-class Psico_chicoAdmin(admin.ModelAdmin):
+class PsicochicoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'apellido','Edad','genero')
     search_fields = ['nombre', 'apellido']
     list_filter = ('genero',)
@@ -89,7 +89,7 @@ admin.site.register(Observacion, ObservacionAdmin)
 admin.site.register(Alimento, AlimentoAdmin)
 admin.site.register(Comida, ComidaAdmin)
 admin.site.register(Menu)
-admin.site.register(Psico_chico, Psico_chicoAdmin)
+admin.site.register(Psicochico, PsicochicoAdmin)
 admin.site.register(Comedor, ComedorAdmin)
 
 

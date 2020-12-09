@@ -47,7 +47,7 @@ class Chico(Persona):
     def __str__(self) -> str:
         return super().__str__()
 
-class Psico_chico(Persona):
+class Psicochico(Persona):
     generos = (
             ('1', 'Masculino'),
             ('2', 'Femenino'),
@@ -77,15 +77,16 @@ class Familiar(Persona):
             ('8', 'Abuela'),
     )
     familia_de = models.ForeignKey(Chico , on_delete = models.CASCADE, null = True, blank = True)
-    o_familia_de = models.ForeignKey(Psico_chico, on_delete = models.CASCADE, null = True, blank = True)
+    o_familia_de = models.ForeignKey(Psicochico, on_delete = models.CASCADE, null = True, blank = True)
     parentesco = models.CharField(max_length=1, choices=parentesco)
-    trabajo = models.CharField(max_length=50)
+    trabajo = models.CharField(max_length=50, null = True)
+    contacto = models.TextField()
     class Meta:
          verbose_name_plural = "Familiares"
 
 class Observacion_psico(models.Model):
     chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
-    chico_psico = models.ForeignKey(Psico_chico, on_delete = models.CASCADE, null = True, blank = True)
+    chico_psico = models.ForeignKey(Psicochico, on_delete = models.CASCADE, null = True, blank = True)
     texto = models.TextField(verbose_name='Introducir texto')
     fecha = models.DateField(auto_now = True)
     alergias = models.CharField(max_length=50)
@@ -95,7 +96,7 @@ class Observacion_psico(models.Model):
     def __str__(self):
         return str(self.chico) + " " + str(self.fecha)
     class Meta:
-        verbose_name = "Observaciones Psicologica"
+        verbose_name = "Observacion Psicologica"
         verbose_name_plural = "Observaciones Psicologicas"
 
 class Taller(models.Model):
@@ -235,31 +236,36 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 def set_perms(sender, instance, created, **kwargs):
-    all = ['Can view religion','Can add religion','Can delete reparacion',
-    'Can view chico','Can add chico','Can delete chico',
-    'Can view familiar','Can add familiar','Can delete familiar',
-    'Can view observacion_psico','Can add observacion_psico','Can delete observacion_psico',
-    'Can view taller','Can add taller','Can delete taller',
-    'Can view asistencia','Can add asistencia','Can delete asistencia',
-    'Can view observacion','Can add observacion','Can delete observacion',
-    'Can view comida','Can add comida','Can delete comida',
-    'Can view menu','Can add menu','Can delete menu',
-    'Can view ingrediente','Can add ingrediente','Can delete ingrediente',
-    'Can view psico_chico','Can add psico_chico','Can delete psico_chico',
-    'Can view comedor','Can add comedor','Can delete comedor',
+    all = [
+    'Can view chico','Can add chico','Can delete chico','Can change chico',
+    'Can view familiar','Can add familiar','Can delete familiar','Can change familiar',
+    'Can view Observacion Psicologica','Can add Observacion Psicologica','Can delete Observacion Psicologica','Can change Observacion Psicologica',
+    'Can view taller','Can add taller','Can delete taller','Can change taller',
+    'Can view asistencia','Can add asistencia','Can delete asistencia','Can change asistencia',
+    'Can view observacion','Can add observacion','Can delete observacion','Can change observacion',
+    'Can view comida','Can add comida','Can delete comida','Can change comida',
+    'Can view menu','Can add menu','Can delete menu','Can change menu',
+    'Can view alimento','Can add alimento','Can delete alimento','Can change alimento',
+    'Can view Chico del programa de psicologia','Can add Chico del programa de psicologia','Can delete Chico del programa de psicologia','Can change Chicos del programa de psicologia',
+    'Can view comedor','Can add comedor','Can delete comedor','Can change comedor',
+    'Can view Usuario','Can add Usuario','Can delete Usuario','Can change Usuario',
     ]
     if created:
+        #'Admin'
         if instance.nivel == '1':
             permissions = Permission.objects.filter(name__in = all)
             instance.user_permissions.set(permissions)
+        #'Psicopedagogo'
         elif instance.nivel == '2':
-            permissions = Permission.objects.filter(name__in = ['Can view observacionpsico','Can add observacionpsico','Can view asistencia','Can delete asistencia', 'Can view observacion','Can add observacion','Can delete observacion'])
+            permissions = Permission.objects.filter(name__in = ['Can view familiar','Can add familiar','Can change familiar','Can view asistencia','Can add asistencia','Can change asistencia','Can view chico','Can add chico','Can change chico','Can view observacion','Can add observacion','Can change observacion','Can delete observacion'])
             instance.user_permissions.set(permissions)
+        #'Psicologo'
         elif instance.nivel == '3':
-            permissions = Permission.objects.filter(name__in = ['Can view psico_chico','Can add psico_chico','Can view chico','Can add chico','Can view observacion_psico','Can add observacion_psico','Can delete observacion_psico'])
+            permissions = Permission.objects.filter(name__in = ['Can view Chico del programa de psicologia','Can add Chico del programa de psicologia','Can delete Chico del programa de psicologia','Can view Observacion Psicologica','Can add Observacion Psicologica','Can change Observacion Psicologica'])
             instance.user_permissions.set(permissions)
+        #'Cocinero'
         elif instance.nivel == '4':
-            permissions = Permission.objects.filter(name__in = ['Can view comida','Can add comida','Can delete comida','Can view menu','Can add menu','Can delete menu', 'Can view ingrediente','Can add ingrediente','Can delete ingrediente',])
+            permissions = Permission.objects.filter(name__in = ['Can view alimento','Can add alimento','Can change alimento','Can view comida','Can add comida','Can change comida','Can view menu','Can add menu','Can change menu',])
             instance.user_permissions.set(permissions)
 
 post_save.connect(set_perms, sender = MyUser)
