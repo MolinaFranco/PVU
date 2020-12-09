@@ -157,20 +157,9 @@
                         </template>
 
                         <v-list>
-                          <v-list-item link href="http://mpago.la/2GJHbeQ">
-                            <v-list-item-title >$200</v-list-item-title>
-                          </v-list-item>
-                          <v-list-item link href="http://mpago.la/2DwEwsz">
-                            <v-list-item-title >$500</v-list-item-title>
-                          </v-list-item>
-                          <v-list-item link href="http://mpago.la/2tqcND6">
-                            <v-list-item-title >$1000</v-list-item-title>
-                          </v-list-item>
-                          <v-list-item link href="http://mpago.la/1eoy1yY">
-                            <v-list-item-title >$2000</v-list-item-title>
-                          </v-list-item>
-                          <v-list-item link href="http://mpago.la/1wjD5bC">
-                            <v-list-item-title >$5000</v-list-item-title>
+                          <v-list-item link v-for="(donacion, index) in donaciones" :key="'donacion' + index" 
+                          :href="donacion.src">
+                            <v-list-item-title v-text="donacion.title"  ></v-list-item-title>
                           </v-list-item>
                         </v-list>
                       </v-menu>
@@ -190,13 +179,22 @@
                         </v-card-actions>
                         <v-card-actions  v-if="$vuetify.breakpoint.xsOnly">
                           <v-row>
-                            <v-btn
-                            text
-                            target="_blank"
-                            href="#"
-                            ><v-icon>mdi-piggy-bank
-                            </v-icon>&nbsp; Donar Dinero</v-btn
-                          >
+                            <v-menu bottom :offset-y="offset">
+                              <template v-slot:activator="{ on}">
+                                <v-btn
+                              text
+                              v-on="on"
+                                ><v-icon>mdi-piggy-bank</v-icon>&nbsp; Donar Dinero
+                              </v-btn>
+                              </template>
+      
+                              <v-list>
+                                <v-list-item link v-for="(donacion, index) in donaciones" :key="'donacion' + index" 
+                                :href="donacion.src">
+                                  <v-list-item-title v-text="donacion.title"  ></v-list-item-title>
+                                </v-list-item>
+                              </v-list>
+                            </v-menu>
                           </v-row>
                           </v-card-actions>
                       </div>
@@ -349,7 +347,30 @@
                     'https://i.ibb.co/yP0sfCd/73523468-1681685781987498-4963745009670437465-o.jpg',
                 },
               ],
+              donaciones: [
+                {title: '$200',
+                  src:
+                    'http://mpago.la/2GJHbeQ',
+                },
+                {title: '$500',
+                  src:
+                    'http://mpago.la/2DwEwsz',
+                },
+                {title: '$1000',
+                  src:
+                    'http://mpago.la/2tqcND6',
+                },
+                {title: '$2000',
+                  src:
+                    'http://mpago.la/1eoy1yY',
+                },
+                {title: '$5000',
+                  src:
+                    'http://mpago.la/1wjD5bC',
+                }
+              ],
             };
+            
           },
         });
       });
