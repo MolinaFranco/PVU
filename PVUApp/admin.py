@@ -32,6 +32,9 @@ from django.shortcuts import redirect
 from datetime import datetime
 
 class AsistenciAdmin(admin.ModelAdmin):
+    list_display = ('taller','fecha')
+    search_fields = ['fecha']
+    list_filter = ('taller','fecha',)
     def save_model(self, request, obj, form, change):
         obj.user = request.user
         timestr = datetime.now() 
@@ -42,20 +45,65 @@ class AsistenciAdmin(admin.ModelAdmin):
             print(x.nombre)
             descripcion = ("El alumno: " + x.nombre + " asistio al taller " +str(obj.taller)+" el dia "+ timestr.strftime("%m/%d/%Y, %H:%M:%S")+ ".\nCorroborado por " + str(obj.user))
             Observacion.objects.create(chico = x, texto = descripcion, fecha = timestr, taller = obj.taller)
+    
         
+class ChicoAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'apellido','Edad','comedor','genero')
+    search_fields = ['nombre', 'apellido']
+    list_filter = ('comedor','genero')
 
-admin.site.register(Persona)
-admin.site.register(Chico)
-admin.site.register(Familiar)
-admin.site.register(Observacion_psico)
-admin.site.register(Taller)
+class PsicochicoAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'apellido','Edad','genero')
+    search_fields = ['nombre', 'apellido']
+    list_filter = ('genero',)
+
+class FamiliarAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'apellido','parentesco','familia_de','o_familia_de','trabajo')
+    search_fields = ['nombre', 'apellido','familia_de','o_familia_de']
+    list_filter = ['parentesco','familia_de']
+
+class ObservacionAdmin(admin.ModelAdmin):
+    list_display = ('chico', 'fecha','taller')
+    search_fields = ['chico']
+    list_filter = ('chico','taller','fecha')
+
+class ObservacionPsicoAdmin(admin.ModelAdmin):
+    list_display = ('chico_psico' , 'chico','fecha')
+    search_fields = ['chico_psico','chico','fecha']
+    list_filter = ('chico_psico','chico','fecha')
+    
+class AlimentoAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'cantidad','medidas','vencimiento','enviado')
+    search_fields = ['nombre']
+    list_filter = ('enviado',)
+
+class ComidaAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'fecha')
+    search_fields = ['nombre']
+    list_filter = ['fecha',]
+
+class ComedorAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'calle','numero','complejo')
+    search_fields = ['nombre']
+
+class TallerAdmin(admin.ModelAdmin):
+    list_display = ('nombre',)
+    search_fields = ['nombre']
+class MenuAdmin(admin.ModelAdmin):
+    list_display = ('__str__','fecha')
+    search_fields = ['fecha']
+    list_filter = ('fecha',) 
+admin.site.register(Chico, ChicoAdmin)
+admin.site.register(Familiar, FamiliarAdmin)
+admin.site.register(Observacion_psico,ObservacionPsicoAdmin)
+admin.site.register(Taller,TallerAdmin)
 admin.site.register(Asistencia,AsistenciAdmin)
-admin.site.register(Observacion)
-admin.site.register(Alimento)
-admin.site.register(Comida)
-admin.site.register(Menu)
-admin.site.register(Psico_chico)
-admin.site.register(Comedor)
+admin.site.register(Observacion, ObservacionAdmin)
+admin.site.register(Alimento, AlimentoAdmin)
+admin.site.register(Comida, ComidaAdmin)
+admin.site.register(Menu,MenuAdmin)
+admin.site.register(Psicochico, PsicochicoAdmin)
+admin.site.register(Comedor, ComedorAdmin)
 
 
 csrf_protect_m = method_decorator(csrf_protect)
