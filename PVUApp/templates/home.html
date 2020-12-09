@@ -156,10 +156,10 @@
                         </v-btn>
                         </template>
 
-                        <v-list>
+                        <v-list color="#a52582">
                           <v-list-item link v-for="(donacion, index) in donaciones" :key="'donacion' + index" 
                           :href="donacion.src">
-                            <v-list-item-title v-text="donacion.title"  ></v-list-item-title>
+                            <v-list-item-title v-text="donacion.title" class="white--text"></v-list-item-title>
                           </v-list-item>
                         </v-list>
                       </v-menu>
