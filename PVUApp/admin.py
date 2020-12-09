@@ -34,7 +34,7 @@ from datetime import datetime
 class AsistenciAdmin(admin.ModelAdmin):
     list_display = ('taller','fecha')
     search_fields = ['fecha']
-    list_filter = ('taller',)
+    list_filter = ('taller','fecha',)
     def save_model(self, request, obj, form, change):
         obj.user = request.user
         timestr = datetime.now() 
@@ -60,13 +60,18 @@ class PsicochicoAdmin(admin.ModelAdmin):
 class FamiliarAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'apellido','parentesco','familia_de','o_familia_de','trabajo')
     search_fields = ['nombre', 'apellido','familia_de','o_familia_de']
-    list_filter = ('parentesco',)
+    list_filter = ['parentesco','familia_de']
 
 class ObservacionAdmin(admin.ModelAdmin):
     list_display = ('chico', 'fecha','taller')
     search_fields = ['chico']
-    list_filter = ('chico','taller')
+    list_filter = ('chico','taller','fecha')
 
+class ObservacionPsicoAdmin(admin.ModelAdmin):
+    list_display = ('chico_psico' , 'chico','fecha')
+    search_fields = ['chico_psico','chico','fecha']
+    list_filter = ('chico_psico','chico','fecha')
+    
 class AlimentoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'cantidad','medidas','vencimiento','enviado')
     search_fields = ['nombre']
@@ -75,20 +80,28 @@ class AlimentoAdmin(admin.ModelAdmin):
 class ComidaAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'fecha')
     search_fields = ['nombre']
+    list_filter = ['fecha',]
 
 class ComedorAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'calle','numero','complejo')
     search_fields = ['nombre']
-    
+
+class TallerAdmin(admin.ModelAdmin):
+    list_display = ('nombre',)
+    search_fields = ['nombre']
+class MenuAdmin(admin.ModelAdmin):
+    list_display = ('__str__','fecha')
+    search_fields = ['fecha']
+    list_filter = ('fecha',) 
 admin.site.register(Chico, ChicoAdmin)
 admin.site.register(Familiar, FamiliarAdmin)
-admin.site.register(Observacion_psico)
-admin.site.register(Taller)
+admin.site.register(Observacion_psico,ObservacionPsicoAdmin)
+admin.site.register(Taller,TallerAdmin)
 admin.site.register(Asistencia,AsistenciAdmin)
 admin.site.register(Observacion, ObservacionAdmin)
 admin.site.register(Alimento, AlimentoAdmin)
 admin.site.register(Comida, ComidaAdmin)
-admin.site.register(Menu)
+admin.site.register(Menu,MenuAdmin)
 admin.site.register(Psicochico, PsicochicoAdmin)
 admin.site.register(Comedor, ComedorAdmin)
 

@@ -87,6 +87,7 @@ class Familiar(Persona):
 class Observacion_psico(models.Model):
     chico = models.ForeignKey(Chico, on_delete = models.CASCADE, null = True, blank = True)
     chico_psico = models.ForeignKey(Psicochico, on_delete = models.CASCADE, null = True, blank = True)
+    fecha = models.DateField(auto_now = True)
     texto = models.TextField(verbose_name='Introducir texto')
     fecha = models.DateField(auto_now = True)
     alergias = models.CharField(max_length=50)
@@ -156,7 +157,7 @@ class Menu(models.Model):
     class Meta:
         verbose_name_plural = "Menús"
     def __str__(self):
-        return ', '.join([x.nombre for x in self.comida.all()]) + " " + str(self.fecha)
+        return ', '.join([x.nombre for x in self.comida.all()])
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, nivel, password = None):
