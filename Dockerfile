@@ -10,7 +10,7 @@ WORKDIR /app
 COPY . /app
 
 RUN python manage.py makemigrations
-RUN python manage.py migrate --run-syncdb
+RUN python manage.py migrate --no-input
 
 EXPOSE 8000
 
