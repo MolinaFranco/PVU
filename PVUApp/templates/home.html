@@ -1,149 +1,185 @@
 <html>
+  <head>
+    <link
+      rel="icon"
+      href="https://i.ibb.co/c1yxfVY/pngwing-com.png"
+      type="image/icon type"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <title>PVU</title>
+    <style>
+      [v-cloak] {
+        display: none;
+      }
 
-<head>
-  <link rel="icon" href="https://i.ibb.co/c1yxfVY/pngwing-com.png" type="image/icon type" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
-  <title>PVU</title>
-  <style>
-    [v-cloak] {
-      display: none;
-    }
+      .v-card__title {
+        word-break: normal;
+      }
+    </style>
+  </head>
 
-    .v-card__title {
-      word-break: normal;
-    }
-  </style>
-</head>
-
-<body>
-  <div id="app" v-cloak>
-    <v-app style="background-color: #e3f2fd">
-      <div>
-        <v-carousel cycle class="mb-1 pb-1">
-          <v-carousel-item v-for="(item,i) in items" :key="i" :src="item.src" reverse-transition="fade-transition"
-            transition="fade-transition">
-            <v-row align="center" class="mt-10">
-              <v-col class="text-center" cols="12">
-                <v-row justify="center" align="center">
-                  <h1 class="font-weight-regular" style="color: #e3f2fd" :class="{
+  <body>
+    <div id="app" v-cloak>
+      <v-app style="background-color: #e3f2fd">
+        <div>
+          <v-carousel cycle class="mb-1 pb-1">
+            <v-carousel-item
+              v-for="(item,i) in items"
+              :key="i"
+              :src="item.src"
+              reverse-transition="fade-transition"
+              transition="fade-transition"
+            >
+              <v-row align="center" class="mt-10">
+                <v-col class="text-center" cols="12">
+                  <v-row justify="center" align="center">
+                    <h1
+                      class="font-weight-regular"
+                      style="color: #e3f2fd"
+                      :class="{
                       subheading: $vuetify.breakpoint.smAndDown,
                       'display-4': $vuetify.breakpoint.mdAndUp,
-                    }">
-                    Personas
-                  </h1>
-                </v-row>
-                <v-row justify="center" align="center">
-                  <h1 class="font-weight-regular" style="color: #e3f2fd" :class="{
+                    }"
+                    >
+                      Personas
+                    </h1>
+                  </v-row>
+                  <v-row justify="center" align="center">
+                    <h1
+                      class="font-weight-regular"
+                      style="color: #e3f2fd"
+                      :class="{
                       subheading: $vuetify.breakpoint.smAndDown,
                       'display-4': $vuetify.breakpoint.mdAndUp,
-                    }">
-                    Voluntarias
-                  </h1>
-                </v-row>
-                <v-row justify="center" align="center">
-                  <h1 class="font-weight-regular" style="color: #e3f2fd" :class="{
+                    }"
+                    >
+                      Voluntarias
+                    </h1>
+                  </v-row>
+                  <v-row justify="center" align="center">
+                    <h1
+                      class="font-weight-regular"
+                      style="color: #e3f2fd"
+                      :class="{
                       subheading: $vuetify.breakpoint.smAndDown,
                       'display-4': $vuetify.breakpoint.mdAndUp,
-                    }">
-                    Unidas
-                  </h1>
-                </v-row>
+                    }"
+                    >
+                      Unidas
+                    </h1>
+                  </v-row>
+                </v-col>
+              </v-row>
+            </v-carousel-item>
+          </v-carousel>
+          <v-container style="color: transparent" class="mt-0 pt-0">
+            <v-row dense>
+              <v-col cols="12" md="12" sm="12" class="my-0 py-0">
+                <v-card color="#751a5c" dark class="my-0 py-0">
+                  <div class="mt-4 d-flex flex-no-wrap justify-space-between">
+                    <div>
+                      <v-card-title class="headline">¿Que es PVU?</v-card-title>
+                      <v-card-subtitle>
+                        Es una Asociación Civil que tiene como principal
+                        objetivo mejorar la calidad de vida de las personas y
+                        equiparar oportunidades en nuestra sociedad a través de
+                        La Educación, brindando talleres de diferentes índoles;
+                        y con asistencia ligadas a una mejor alimentación
+                        nutricional en sectores vulnerables, entre varias
+                        actividades. También creemos en el Trabajo en Equipo,
+                        por eso generamos importantes alianzas con fundaciones
+                        y/o emprendimientos de triple impacto.
+                      </v-card-subtitle>
+                    </div>
+                    <v-avatar class="ma-3 rounded" size="125" tile>
+                      <v-img
+                        src="https://i.ibb.co/X8GLcNt/iconopvu.jpg"
+                      ></v-img>
+                    </v-avatar>
+                  </div>
+                </v-card>
               </v-col>
-            </v-row>
-          </v-carousel-item>
-        </v-carousel>
-        <v-container style="color: transparent" class="mt-0 pt-0">
-          <v-row dense>
-            <v-col cols="12" md="12" sm="12" class="my-0 py-0">
-              <v-card color="#751a5c" dark class="my-0 py-0">
-                <div class="mt-4 d-flex flex-no-wrap justify-space-between">
-                  <div>
-                    <v-card-title class="headline">¿Que es PVU?</v-card-title>
-                    <v-card-subtitle>
-                      Es una Asociación Civil que tiene como principal objetivo mejorar la calidad de vida de las
-                      personas y equiparar oportunidades en nuestra sociedad a través de La Educación, brindando
-                      talleres de diferentes índoles; y con asistencia ligadas a una mejor alimentación nutricional en
-                      sectores vulnerables, entre varias actividades. También creemos en el Trabajo en Equipo, por eso
-                      generamos importantes
-                      alianzas con fundaciones y/o emprendimientos de triple impacto.
-                    </v-card-subtitle>
+              <v-col cols="12" md="6" sm="6" class="my-0 py-0">
+                <v-card color="#a52582" height="90%" dark>
+                  <div class="my-4 d-flex flex-no-wrap justify-space-between">
+                    <div>
+                      <v-card-title class="headline"
+                        >¿Queres ser voluntario/a?</v-card-title
+                      >
+                      <v-card-subtitle>
+                        Sumarte al Equipo de Voluntariado de PVU requiere
+                        Compromiso, Responsabilidad y Empatía. Se participa de
+                        talleres de apoyo escolar, jornadas deportivas, roperos
+                        comunitarios y cocina. Te invitamos a leer en detalles
+                        los requisitos y formalidades para luego poder completar
+                        el Formulario de Aspirantes a las distintas actividades.
+                      </v-card-subtitle>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                      <v-card-actions>
+                        <v-btn
+                          text
+                          target="_blank"
+                          href="https://docs.google.com/forms/d/e/1FAIpQLSfNCz8c53Pr56I4cTy6RqSd1cM7gQBHu2usEkux3gQrt0vXow/viewform?usp=sf_link"
+                        >
+                          <v-icon>mdi-clipboard-edit-outline</v-icon
+                          >&nbsp;REGLAMENTO E INSCRIPCIÓN
+                        </v-btn>
+                      </v-card-actions>
+                    </div>
+                    <v-avatar class="ma-3 rounded" size="125" tile>
+                      <v-img
+                        src="https://i.ibb.co/xq5Bvjf/Whats-App-Image-2020-11-09-at-8-21-41-PM.jpg"
+                      ></v-img>
+                    </v-avatar>
                   </div>
-                  <v-avatar class="ma-3 rounded" size="125" tile>
-                    <v-img src="https://i.ibb.co/X8GLcNt/iconopvu.jpg"></v-img>
-                  </v-avatar>
-                </div>
-              </v-card>
-            </v-col>
-            <v-col cols="12" md="6" sm="6" class="my-0 py-0">
-              <v-card color="#a52582" height="90%" dark>
-                <div class="my-4 d-flex flex-no-wrap justify-space-between">
-                  <div>
-                    <v-card-title class="headline">¿Queres ser voluntario/a?</v-card-title>
-                    <v-card-subtitle>
-                      Sumarte al Equipo de Voluntariado de PVU requiere Compromiso, Responsabilidad y Empatía. Se
-                      participa de talleres educativos, granja y cocina. Te invitamos a leer en detalles los requisitos
-                      y formalidades para luego poder completar el Formulario de
-                      Aspirantes a las distintas actividades.
-                    </v-card-subtitle>
-                    <v-card-actions>
-                      <v-btn text target="_blank"
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSfNCz8c53Pr56I4cTy6RqSd1cM7gQBHu2usEkux3gQrt0vXow/viewform?usp=sf_link">
-                        <v-icon>mdi-clipboard-edit-outline</v-icon>&nbsp;REGLAMENTO E INSCRIPCIÓN
-                      </v-btn>
-                    </v-card-actions>
-                  </div>
-                  <v-avatar class="ma-3 rounded" size="125" tile>
-                    <v-img src="https://i.ibb.co/xq5Bvjf/Whats-App-Image-2020-11-09-at-8-21-41-PM.jpg"></v-img>
-                  </v-avatar>
-                </div>
-              </v-card>
-            </v-col>
-            <v-spacer></v-spacer>
-            <v-col cols="12" md="6" sm="6" class="my-0 py-0">
-              <v-card color="#a52582" height="90%" dark>
-                <div class="my-4 d-flex flex-no-wrap justify-space-between">
-                  <div>
-                    <v-card-title class="headline">¿Queres ser donante?</v-card-title>
-                    <v-card-subtitle>
-                      En PVU aceptamos donaciones de alimentos no perecederos, carnes, pollos,
-                      verduras y utiles escolares. Tambien contamos con cuenta de Mercado Pago
-                      donde recibimos donaciones las cuales seran utlizadas para lo mencionado
-                      anteriormente.
-                    </v-card-subtitle>
-                    <br />
-                    <v-card-actions v-if="!$vuetify.breakpoint.xs">
-                      <v-btn text target="_blank"
-                        href="https://docs.google.com/forms/d/e/1FAIpQLScSnRJrPo23JfgeR811SWViTvTmzBLQgLX4q6GQR_rQ8jSfgA/viewform?usp=sf_link">
-                        <v-icon>mdi-home-heart</v-icon>&nbsp; Donar
-                      </v-btn>
-                      <v-menu bottom :offset-y="offset">
-                        <template v-slot:activator="{ on}">
-                          <v-btn text v-on="on">
-                            <v-icon>mdi-piggy-bank</v-icon>&nbsp; Donar Dinero
-                          </v-btn>
-                        </template>
-
-                        <v-list color="#a52582">
-                          <v-list-item link v-for="(donacion, index) in donaciones" :key="'donacion' + index"
-                            :href="donacion.src">
-                            <v-list-item-title v-text="donacion.title" class="white--text"></v-list-item-title>
-                          </v-list-item>
-                        </v-list>
-                      </v-menu>
-                    </v-card-actions>
-                    <v-card-actions v-if="$vuetify.breakpoint.xsOnly">
-                      <v-row>
-                        <v-btn text target="_blank"
-                          href="https://docs.google.com/forms/d/e/1FAIpQLScSnRJrPo23JfgeR811SWViTvTmzBLQgLX4q6GQR_rQ8jSfgA/viewform?usp=sf_link">
+                </v-card>
+              </v-col>
+              <v-spacer></v-spacer>
+              <v-col cols="12" md="6" sm="6" class="my-0 py-0">
+                <v-card color="#a52582" height="90%" dark>
+                  <div class="my-4 d-flex flex-no-wrap justify-space-between">
+                    <div>
+                      <v-card-title class="headline"
+                        >¿Queres ser donante?</v-card-title
+                      >
+                      <v-card-subtitle>
+                        En PVU aceptamos donaciones de alimentos no perecederos,
+                        carnes, pollos, verduras y útiles escolares durante todo
+                        el año. Las entregas se coordinan con miembros del
+                        Equipo Voluntario de acuerdo a la zona donde resida
+                        el/la donante. También contamos con cuenta de Mercado
+                        Pago donde recibimos donaciones las cuales serán
+                        utilizadas para lo mencionado anteriormente. IMPORTANTE
+                        ROPA: indumentaria recibimos únicamente entre los meses
+                        de marzo a septiembre. Calzados “en muy buen estado sin
+                        roturas” recibimos durante todo el año.
+                      </v-card-subtitle>
+                      <v-card-actions v-if="!$vuetify.breakpoint.xs">
+                        <v-btn
+                          text
+                          target="_blank"
+                          href="https://docs.google.com/forms/d/e/1FAIpQLScSnRJrPo23JfgeR811SWViTvTmzBLQgLX4q6GQR_rQ8jSfgA/viewform?usp=sf_link"
+                        >
                           <v-icon>mdi-home-heart</v-icon>&nbsp; Donar
                         </v-btn>
-                      </v-row>
-                    </v-card-actions>
-                    <v-card-actions v-if="$vuetify.breakpoint.xsOnly">
-                      <v-row>
                         <v-menu bottom :offset-y="offset">
                           <template v-slot:activator="{ on}">
                             <v-btn text v-on="on">
@@ -151,218 +187,310 @@
                             </v-btn>
                           </template>
 
-                          <v-list>
-                            <v-list-item link v-for="(donacion, index) in donaciones" :key="'donacion' + index"
-                              :href="donacion.src">
-                              <v-list-item-title v-text="donacion.title"></v-list-item-title>
+                          <v-list color="#a52582">
+                            <v-list-item
+                              link
+                              v-for="(donacion, index) in donaciones"
+                              :key="'donacion' + index"
+                              :href="donacion.src"
+                            >
+                              <v-list-item-title
+                                v-text="donacion.title"
+                                class="white--text"
+                              ></v-list-item-title>
                             </v-list-item>
                           </v-list>
                         </v-menu>
-                      </v-row>
-                    </v-card-actions>
+                      </v-card-actions>
+                      <v-card-actions v-if="$vuetify.breakpoint.xsOnly">
+                        <v-row>
+                          <v-btn
+                            text
+                            target="_blank"
+                            href="https://docs.google.com/forms/d/e/1FAIpQLScSnRJrPo23JfgeR811SWViTvTmzBLQgLX4q6GQR_rQ8jSfgA/viewform?usp=sf_link"
+                          >
+                            <v-icon>mdi-home-heart</v-icon>&nbsp; Donar
+                          </v-btn>
+                        </v-row>
+                      </v-card-actions>
+                      <v-card-actions v-if="$vuetify.breakpoint.xsOnly">
+                        <v-row>
+                          <v-menu bottom :offset-y="offset">
+                            <template v-slot:activator="{ on}">
+                              <v-btn text v-on="on">
+                                <v-icon>mdi-piggy-bank</v-icon>&nbsp; Donar
+                                Dinero
+                              </v-btn>
+                            </template>
+
+                            <v-list>
+                              <v-list-item
+                                link
+                                v-for="(donacion, index) in donaciones"
+                                :key="'donacion' + index"
+                                :href="donacion.src"
+                              >
+                                <v-list-item-title
+                                  v-text="donacion.title"
+                                ></v-list-item-title>
+                              </v-list-item>
+                            </v-list>
+                          </v-menu>
+                        </v-row>
+                      </v-card-actions>
+                    </div>
+                    <v-avatar class="ma-3 rounded" size="125" tile>
+                      <v-img src="https://i.ibb.co/HdtTWsT/donante.jpg"></v-img>
+                    </v-avatar>
                   </div>
-                  <v-avatar class="ma-3 rounded" size="125" tile>
-                    <v-img src="https://i.ibb.co/HdtTWsT/donante.jpg"></v-img>
-                  </v-avatar>
-                </div>
-              </v-card>
+                </v-card>
+              </v-col>
+              <v-col cols="12" md="6" sm="6" align="center" class="mt-4 py-0">
+                <v-card color="indigo " dark>
+                  <div class="d-flex flex-no-wrap justify-space-between">
+                    <div>
+                      <v-card-title class="headline">Menu</v-card-title>
+                      <v-card-text class="text-justify"
+                        >Este es el espacio donde planificamos las distintas
+                        meriendas y cenas que brindamos cada semana de acuerdo a
+                        los alimentos disponibles y a algunos objetivos
+                        nutricionales.
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-btn text href="/adminPVUApp/menu/">
+                          <v-icon>mdi-open-in-new</v-icon>&nbsp; Ir Ahora
+                        </v-btn>
+                      </v-card-actions>
+                    </div>
+                    <v-avatar class="ma-3 rounded" size="125" tile>
+                      <v-img
+                        src="https://i.ibb.co/HCmL4wR/183476485-142070001269860-2417245263285060474-n.jpg"
+                      ></v-img>
+                    </v-avatar>
+                  </div>
+                </v-card>
+                <v-card color="#009688" dark>
+                  <div class="my-4 d-flex flex-no-wrap justify-space-between">
+                    <div>
+                      <v-card-title class="headline"
+                        >Colecta Actual</v-card-title
+                      >
+                      <v-card-text class="text-justify"
+                        >Durante el año, realizamos distintas colectas con
+                        objetivos puntuales. Invitamos a los donantes a ser
+                        exigentes con la donación: es el afecto de brindarle al
+                        Otro algún elemento que se requiera oportunamente, esté
+                        nuevo o en impecable estado, y pueda ser de utilidad
+                        para esas personas que pretendemos beneficiar con
+                        nuestras acciones. COLECTA ACTUAL: libros de cuentos
+                        para el Taller de Lectura, útiles escolares y mochilas
+                        nuevas o en impecable estado (sin roturas ni manchas
+                        importantes). OBJETIVO DE MINIMA: 100 mochilas con
+                        útiles nuevos y golosinas para el inicio del próximo
+                        ciclo escolar. FECHA: recibimos hasta el jueves 03 marzo
+                        de 2022.
+                        <br />
+                      </v-card-text>
+                    </div>
+                    <v-avatar class="ma-3 rounded" size="125" tile>
+                      <v-img src="https://i.ibb.co/fd43DW4/asis.jpg"></v-img>
+                    </v-avatar>
+                  </div>
+                </v-card>
+
+                <v-card color="#1F7087" height="33%" dark>
+                  <div class="my-4 d-flex flex-no-wrap justify-space-between">
+                    <div>
+                      <v-card-title class="headline"
+                        >Nuestra Cuenta Bancaria</v-card-title
+                      >
+                      <v-card-text class="text-justify">
+                        También pueden participar colaborando a través de
+                        nuestra cuenta ya que sus aportes nos permiten contar
+                        dentro del Equipo Voluntario con profesionales de
+                        distintas áreas de la Educación.<br />
+                        Banco Santander Rio – Cuenta 390-001736/1<br />
+                        CBU 0720390720000000173618<br />
+                        ALIAS Personas.Voluntarias
+                      </v-card-text>
+                    </div>
+                    <v-avatar class="ma-3 rounded" size="125" tile>
+                      <v-img src="https://i.ibb.co/K9CV8Br/menu.jpg"></v-img>
+                    </v-avatar>
+                  </div>
+                </v-card>
+              </v-col>
+              <v-col cols="12" md="6" sm="6" align="center" class="py-0">
+                <v-card color="light-blue mt-4" dark>
+                  <div class="d-flex flex-no-wrap justify-space-between">
+                    <div>
+                      <v-card-title class="headline"
+                        >Asistencia a Talleres Educativos</v-card-title
+                      >
+                      <v-card-text class="text-justify"
+                        >En este espacio nos informamos de la frecuencia y el
+                        interés de las familias en la participación de las
+                        distintas temáticas que abordamos en favor de su
+                        educación y progreso.
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-btn text href="/adminPVUApp/asistencia/">
+                          <v-icon>mdi-open-in-new</v-icon>&nbsp; Ir Ahora
+                        </v-btn>
+                      </v-card-actions>
+                    </div>
+                    <v-avatar class="ma-3 rounded" size="125" tile>
+                      <v-img
+                        src="https://i.ibb.co/QK1p8rM/170147531-815043709106610-277167437014925875-n.jpg"
+                      ></v-img>
+                    </v-avatar>
+                  </div>
+                </v-card>
+                <v-card color="primary" height="34%" class="mt-4" dark>
+                  <div class="d-flex flex-no-wrap justify-space-between">
+                    <div>
+                      <v-card-title class="headline"
+                        >Pasteleria para mujeres trabajadoras</v-card-title
+                      >
+                      <v-card-text class="text-justify"
+                        >Este es un Taller que gestamos para brindar la
+                        posibilidad a mujeres de Villa Los Robles de aprender un
+                        nuevo oficio y generar ingresos genuinos trabajando a
+                        favor de mejorar su calidad de vida y de sus familias.
+                        El lema de progresar a través del esfuerzo se hace
+                        presente en este equipo. RECIBIMOS DONACIONES de harina,
+                        manteca, dulce de leche, dulce de membrillo y de batata,
+                        levadura entre otros. TRABAJAMOS CON MATERIA PRIMA DE
+                        CALIDAD y nuestros precios son competitivos sobre todo
+                        para revendedores. Con tu compra ayudas a que muchas
+                        mujeres puedan continuar con este emprendimiento laboral
+                        y social.
+                      </v-card-text>
+                    </div>
+                    <v-avatar class="ma-3 rounded" size="125" tile>
+                      <v-img
+                        src="https://i.ibb.co/WppsVFb/177210711-236103501595269-1599535463166939207-n.jpg"
+                      ></v-img>
+                    </v-avatar>
+                  </div>
+                </v-card>
+                <v-card color="deep-purple" class="mt-4 mb-10" dark>
+                  <div class="d-flex flex-no-wrap justify-space-between">
+                    <div>
+                      <v-card-title class="headline"
+                        >Microplanta de Bloques 3C</v-card-title
+                      >
+                      <v-card-text class="text-justify"
+                        >Gestamos este vínculo con la empresa 3C CONSTRUCCIONES
+                        porque nos identifican las mismas ganas y los mismos
+                        valores. A través de una innovadora tecnología de
+                        economía circular y triple impacto, este proyecto
+                        conjunto nos permite insertar en el mundo laboral a
+                        miembros de las familias de Villa Los Robles, donde está
+                        ubicada nuestra microplanta. ACTUALMENTE estamos
+                        ampliando el aula comedor con una nueva salita para
+                        actividades de lectura y con profesionales de
+                        psicología; y un nuevo espacio destinado para la cocina.
+                        QUERES SUMAR TU APORTE? Podés hacerlo donando botellas
+                        de plástico de cualquier tipo que sean inferiores a
+                        bidones de 5lts.
+                      </v-card-text>
+                    </div>
+                    <v-avatar class="ma-3 rounded" size="125" tile>
+                      <v-img
+                        src="https://i.ibb.co/xjFbcLF/235522663-2995193407433414-8546209534756409599-n.jpg"
+                      ></v-img>
+                    </v-avatar>
+                  </div>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
+
+          <v-footer padless style="background-color: #8aacc8">
+            <v-col class="text-center" cols="12">
+              <v-btn
+                icon
+                target="_blank"
+                href="mailto:pvunidas@gmail.com?Subject=Personas%20voluntarias%20unidas%20"
+              >
+                <v-icon>mdi-gmail</v-icon>
+              </v-btn>
+              <v-btn
+                icon
+                target="_blank"
+                href="https://www.instagram.com/pvunidas"
+              >
+                <v-icon>mdi-instagram</v-icon>
+              </v-btn>
+              <v-btn
+                icon
+                target="_blank"
+                href="https://www.facebook.com/pvunidas"
+              >
+                <v-icon>mdi-facebook</v-icon>
+              </v-btn>
+              <v-btn
+                icon
+                target="_blank"
+                href="https://play.google.com/store/apps/details?id=ar.pvunidas"
+              >
+                <v-icon>mdi-google-play</v-icon>
+              </v-btn>
+              <v-btn icon disabled>
+                <v-icon>mdi-whatsapp</v-icon>
+              </v-btn>
+              <br class="d-flex d-sm-none" />
+              2020 - <strong>Personas Voluntarias Unidas</strong>
             </v-col>
-            <v-col cols="12" md="6" sm="6" align="center" class="mt-4 py-0">
-            <v-card color="indigo " dark>
-                <div class="d-flex flex-no-wrap justify-space-between">
-                  <div>
-                    <v-card-title class="headline">Menu</v-card-title>
-                    <v-card-text class="text-justify">Este es el espacio donde planificamos las distintas meriendas y
-                      cenas que brindamos cada semana de
-                      acuerdo a los alimentos disponibles y a algunos objetivos nutricionales.
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-btn text href="/adminPVUApp/menu/">
-                        <v-icon>mdi-open-in-new</v-icon>&nbsp; Ir Ahora
-                      </v-btn>
-                    </v-card-actions>
-                  </div>
-                  <v-avatar class="ma-3 rounded" size="125" tile>
-                    <v-img src="https://i.ibb.co/HCmL4wR/183476485-142070001269860-2417245263285060474-n.jpg"></v-img>
-                  </v-avatar>
-                </div>
-              </v-card>
-            <v-card color="#009688" dark>
-                <div class="my-4 d-flex flex-no-wrap justify-space-between">
-                  <div>
-                    <v-card-title class="headline">Colecta Actual</v-card-title>
-                    <v-card-text class="text-justify">Durante el año, realizamos distintas colectas con objetivos
-                      puntuales. Invitamos a los donantes a ser exigentes
-                      con la donación: es el afecto de brindarle al Otro algún elemento que se requiera oportunamente,
-                      esté nuevo
-                      o en impecable estado, y pueda ser de utilidad para esas personas que pretendemos beneficiar con
-                      nuestras
-                      acciones.<br>
-                      COLECTA ACTUAL: juguetes, libros de cuentos, útiles escolares y golosinas.<br>
-                      OBJETIVO DE MINIMA: 200 bolsas con regalos y golosinas para EL DIA DE LA INFANCIA<br>
-                      FECHA: recibimos hasta el 14 de agosto.<br>
-                    </v-card-text>
-                  </div>
-                  <v-avatar class="ma-3 rounded" size="125" tile>
-                    <v-img src="https://i.ibb.co/fd43DW4/asis.jpg"></v-img>
-                  </v-avatar>
-                </div>
-              </v-card>
-              
-              <v-card color="#1F7087" height="33%"dark>
-                <div class="my-4 d-flex flex-no-wrap justify-space-between">
-
-                  <div>
-                    <v-card-title class="headline">Nuestra Cuenta Bancaria</v-card-title>
-                    <v-card-text class="text-justify">
-                      También pueden participar colaborando a través de nuestra cuenta ya que sus aportes nos permiten
-                      contar
-                      dentro del Equipo Voluntario con profesionales de distintas áreas de la Educación.<br>
-                      Banco Santander Rio – Cuenta 390-001736/1<br>
-                      CBU 0720390720000000173618<br>
-                      ALIAS Personas.Voluntarias
-                    </v-card-text>
-                  </div>
-                  <v-avatar class="ma-3 rounded" size="125" tile>
-                    <v-img src="https://i.ibb.co/K9CV8Br/menu.jpg"></v-img>
-                  </v-avatar>
-                </div>
-              </v-card>
-              
-
-            </v-col>
-            <v-col cols="12" md="6" sm="6" align="center" class=" py-0">
-              <v-card color="light-blue mt-4" dark>
-                <div class="d-flex flex-no-wrap justify-space-between">
-                  <div>
-                    <v-card-title class="headline">Asistencia a Talleres Educativos</v-card-title>
-                    <v-card-text class="text-justify">En este espacio nos informamos de la frecuencia y el interés de
-                      las familias en la participación de las
-                      distintas temáticas que abordamos en favor de su educación y progreso.
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-btn text href="/adminPVUApp/asistencia/">
-                        <v-icon>mdi-open-in-new</v-icon>&nbsp; Ir Ahora
-                      </v-btn>
-                    </v-card-actions>
-                  </div>
-                  <v-avatar class="ma-3 rounded" size="125" tile>
-                    <v-img src="https://i.ibb.co/QK1p8rM/170147531-815043709106610-277167437014925875-n.jpg"></v-img>
-                  </v-avatar>
-                </div>
-              </v-card>
-              <v-card color="primary" height="37%"class ="mt-4"dark>
-                <div class="d-flex flex-no-wrap justify-space-between">
-                  <div>
-                    <v-card-title class="headline">La Granja de Sr. Brito</v-card-title>
-                    <v-card-text class="text-justify">Coordinamos un trabajo en red en este hermoso lugar de Villa
-                      Allende plagado de naturaleza y
-                      armonía. Aquí se dan clases de equinoterapia y se asiste a niños y niñas con discapacidades.
-                      Nosotros
-                      nos trasladamos algunos sábados para que los nenes y las nenas que participan de los talleres
-                      educativos puedan disfrutar de un paseo respirando un aire distinto, tengan su día de campo y se
-                      diviertan en una entretenida cabalgata. También aprenden sobre el cuidado y la tenecia responsable
-                      de animales y les enseñamos sobre cultivos de huerta.
-                    </v-card-text>
-                  </div>
-                  <v-avatar class="ma-3 rounded" size="125" tile>
-                    <v-img src="https://i.ibb.co/WppsVFb/177210711-236103501595269-1599535463166939207-n.jpg"></v-img>
-                  </v-avatar>
-                </div>
-              </v-card>
-              <v-card color="deep-purple" class="mt-4 mb-10" dark>
-                <div class="d-flex flex-no-wrap justify-space-between">
-                  <div>
-                    <v-card-title class="headline">Microplanta de Bloques 3C</v-card-title>
-                    <v-card-text class="text-justify">Gestamos este vínculo con la empresa 3C CONSTRUCCIONES porque nos
-                      identifican las mismas ganas
-                      y los mismos valores. A través de una innovadora tecnología de economía circular y triple impacto,
-                      este proyecto conjunto nos permite insertar en el mundo laboral a miembros de las familias de
-                      Villa
-                      Los Robles, donde está ubicada nuestra microplanta y el aula comedor.<br>
-                      QUERES SUMAR TU APORTE? Podés hacerlo donando botellas de plástico o madera tipo palets.
-                    </v-card-text>
-                  </div>
-                  <v-avatar class="ma-3 rounded" size="125" tile>
-                    <v-img src="https://i.ibb.co/xjFbcLF/235522663-2995193407433414-8546209534756409599-n.jpg"></v-img>
-                  </v-avatar>
-                </div>
-              </v-card>
-              
-            </v-col>
-          </v-row>
-        </v-container>
-
-        <v-footer padless style="background-color: #8aacc8">
-          <v-col class="text-center" cols="12">
-            <v-btn icon target="_blank" href="mailto:pvunidas@gmail.com?Subject=Personas%20voluntarias%20unidas%20">
-              <v-icon>mdi-gmail</v-icon>
-            </v-btn>
-            <v-btn icon target="_blank" href="https://www.instagram.com/pvunidas">
-              <v-icon>mdi-instagram</v-icon>
-            </v-btn>
-            <v-btn icon target="_blank" href="https://www.facebook.com/pvunidas">
-              <v-icon>mdi-facebook</v-icon>
-            </v-btn>
-            <v-btn icon target="_blank" href="https://play.google.com/store/apps/details?id=ar.pvunidas">
-              <v-icon>mdi-google-play</v-icon>
-            </v-btn>
-            <v-btn icon disabled>
-              <v-icon>mdi-whatsapp</v-icon>
-            </v-btn>
-            <br class="d-flex d-sm-none" />
-            2020 - <strong>Personas Voluntarias Unidas</strong>
-          </v-col>
-        </v-footer>
-      </div>
-    </v-app>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-  <script>
-    window.addEventListener('load', () => {
-      new Vue({
-        el: '#app',
-        vuetify: new Vuetify(),
-        data() {
-          return {
-            offset: true,
-            items: [
-              {
-                src: 'https://i.ibb.co/7CpL8ZX/74288582-1468483883307690-6887282600927297536-o.jpg',
-              },
-              {
-                src: 'https://i.ibb.co/d4JCW5V/118030608-1735366049952804-5621280204442170025-o.jpg',
-              },
-
-            ],
-            donaciones: [
-              {
-                title: '$200',
-                src: 'http://mpago.la/2GJHbeQ',
-              },
-              {
-                title: '$500',
-                src: 'http://mpago.la/2DwEwsz',
-              },
-              {
-                title: '$1000',
-                src: 'http://mpago.la/2tqcND6',
-              },
-              {
-                title: '$2000',
-                src: 'http://mpago.la/1eoy1yY',
-              },
-              {
-                title: '$5000',
-                src: 'http://mpago.la/1wjD5bC',
-              },
-            ],
-          };
-        },
+          </v-footer>
+        </div>
+      </v-app>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+      window.addEventListener('load', () => {
+        new Vue({
+          el: '#app',
+          vuetify: new Vuetify(),
+          data() {
+            return {
+              offset: true,
+              items: [
+                {
+                  src: 'https://i.ibb.co/7CpL8ZX/74288582-1468483883307690-6887282600927297536-o.jpg',
+                },
+                {
+                  src: 'https://i.ibb.co/d4JCW5V/118030608-1735366049952804-5621280204442170025-o.jpg',
+                },
+              ],
+              donaciones: [
+                {
+                  title: '$200',
+                  src: 'http://mpago.la/2GJHbeQ',
+                },
+                {
+                  title: '$500',
+                  src: 'http://mpago.la/2DwEwsz',
+                },
+                {
+                  title: '$1000',
+                  src: 'http://mpago.la/2tqcND6',
+                },
+                {
+                  title: '$2000',
+                  src: 'http://mpago.la/1eoy1yY',
+                },
+                {
+                  title: '$5000',
+                  src: 'http://mpago.la/1wjD5bC',
+                },
+              ],
+            };
+          },
+        });
       });
-    });
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
