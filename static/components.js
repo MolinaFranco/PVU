@@ -10,21 +10,25 @@ Vue.component('pvu-button', {
 Vue.component('pvu-card', {
   props: ['title', 'color', 'img'],
   template: `
-    <v-card :color="color" dark>
-      <div class="my-t-4 d-flex flex-no-wrap justify-space-between">
-        <div>
-          <v-card-title class="headline">{{ title }}</v-card-title>
-          <v-card-subtitle style="margin-bottom: 32px;">
-            <slot name="content"></slot>
-          </v-card-subtitle>
-          <v-card-actions style="position: absolute; bottom: 0; padding: 16px;">
-            <slot name="buttons"></slot>
-          </v-card-actions>
-        </div>
-        <v-avatar class="ma-3 rounded" size="125" tile>
-          <v-img :src="img"></v-img>
-        </v-avatar>
-      </div>
+    <v-card :color="color" dark class="d-flex flex-column justify-space-between" style="height: 100%;" style="text-align: justify;">
+      <v-container fluid class="pa-0 d-flex flex-column flex-grow-1">
+        <v-row>
+          <v-col>
+            <v-card-title class="headline">{{ title }}</v-card-title>
+            <v-card-subtitle style="margin-bottom: 32px;">
+              <slot name="content"></slot>
+            </v-card-subtitle>
+          </v-col>
+          <v-col cols="auto">
+            <v-avatar class="ma-3 rounded" size="125" tile>
+              <v-img :src="img"></v-img>
+            </v-avatar>
+          </v-col>
+        </v-row>
+      </v-container>
+      <v-card-actions class="pa-4 d-flex justify-end">
+        <slot name="buttons"></slot>
+      </v-card-actions>
     </v-card>
   `,
 });
@@ -59,7 +63,7 @@ Vue.component('pvu-div', {
       return {
         display: 'grid',
         gridTemplateColumns: `repeat(${this.nCols}, 1fr)`,
-        gridTemplateRows: `repeat(${this.nRows}, 1fr)`,
+        gridAutoRows: 'auto',
         gridGap: '1rem',
         marginTop: '1rem',
       };

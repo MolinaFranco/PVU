@@ -26,6 +26,15 @@
         flex-direction: column;
       }
     }
+    .v-avatar {
+  align-self: flex-start;
+  margin-left: auto;
+}
+
+.v-avatar img {
+  float: right;
+  margin: 0 0 8px 8px;
+}
   </style>
 </head>
 
@@ -69,18 +78,15 @@
           <pvu-div n-cols="1" n-rows="1">
             <pvu-card title="¿Que es PVU?" color="#751a5c" img="https://i.ibb.co/X8GLcNt/iconopvu.jpg">
               <template #content>
-                Es una Asociación Civil que tiene como principal objetivo mejorar la calidad de vida de las
-                personas y equiparar oportunidades en nuestra sociedad a través de La Educación, brindando
-                talleres de diferentes índoles; y con asistencia ligadas a una mejor alimentación nutricional en
-                sectores vulnerables, entre varias actividades. También creemos en el Trabajo en Equipo, por eso
-                generamos importantes
-                alianzas con fundaciones y/o emprendimientos de triple impacto.
+                Es una Asociación Civil que tiene como principal objetivo mejorar la calidad de vida de las personas y equiparar oportunidades en nuestra sociedad a través de La Educación, brindando talleres de apoyo escolar como actividad principal para acompañar el recorrido de niños y niñas durante esta etapa de su infancia y adolescencia. 
+Al mismo tiempo complementamos con otros talleres de diversas índoles, como ESI o educación de salud bucal para generar costumbres sanitarias que favorezcan su desarrollo, entre otros. Además, brindamos asistencia ligadas a una mejor alimentación nutricional en los territorios vulnerables donde llevamos a cabo nuestra labor voluntaria, entre varias actividades. 
+También creemos en el Trabajo en Equipo, por eso generamos importantes alianzas con fundaciones y/o emprendimientos de triple impacto.
               </template>
             </pvu-card>
           </pvu-div>
           <pvu-div n-cols="2" n-rows="1">
-            <pvu-card title="¿Queres ser voluntario/a?" color="#a52582"
-              img="https://i.ibb.co/xq5Bvjf/Whats-App-Image-2020-11-09-at-8-21-41-PM.jpg">
+            <pvu-card title="Queres ser Voluntario/a?" color="#a52582"
+              img='static/imgs/2024-1/voluntario.jpg'>
               <template #content>
                 Sumarte al Equipo de Voluntariado de PVU requiere Compromiso, Responsabilidad y Empatía. Se participa de
                 talleres de apoyo escolar, jornadas deportivas, roperos comunitarios y cocina. Te invitamos a leer en
@@ -94,17 +100,16 @@
                 </v-btn>
               </template>
             </pvu-card>
-            <pvu-card title="¿Queres ser donante?" color="#a52582" img="https://i.ibb.co/HdtTWsT/donante.jpg">
+            <pvu-card title="¿Queres ser donante?" color="#a52582" img='static/imgs/2024-1/colecta.jpg'>
               <template #content>
-                Sumarte al Equipo de Voluntariado de PVU requiere Compromiso, Responsabilidad y Empatía. Se participa de
-                talleres de apoyo escolar, jornadas deportivas, roperos comunitarios y cocina. Te invitamos a leer en
-                detalles los requisitos y formalidades para luego poder completar el Formulario de Aspirantes a las
-                distintas actividades.
+                Si no contas con tiempo para dedicarle al voluntariado, el aporte de donaciones también es sumamente importante para poder ayudar a niñas y niños. 
+En PVU aceptamos alimentos no perecederos, carnes, pollos, verduras y útiles escolares durante todo el año. Las entregas se coordinan con miembros del Equipo Voluntario de acuerdo a la zona donde resida el/la donante. También contamos con cuenta de Mercado Pago donde recibimos sus aportes que son utilizados para lo mencionado anteriormente.
+
               </template>
               <template #buttons>
                 <v-btn text target="_blank"
                   href="https://docs.google.com/forms/d/e/1FAIpQLScSnRJrPo23JfgeR811SWViTvTmzBLQgLX4q6GQR_rQ8jSfgA/viewform?usp=sf_link">
-                  <v-icon>mdi-home-heart</v-icon>&nbsp; Donar
+                  <v-icon>mdi-home-heart</v-icon>&nbsp; DONAR EN ESPECIE 
                 </v-btn>
                 <v-menu bottom :offset-y="offset">
                   <template v-slot:activator="{on}">
@@ -123,51 +128,49 @@
             </pvu-card>
           </pvu-div>
           <pvu-div n-cols="2" n-rows="3">
-            <pvu-card title="Menu" color="indigo"
-              img="https://i.ibb.co/HCmL4wR/183476485-142070001269860-2417245263285060474-n.jpg">
+            <pvu-card title="Nuestra Cuenta Bancaria" color="indigo"
+            img='static/imgs/2024-1/cuenta.jpg'>
               <template #content>
-                Este es el espacio donde planificamos las distintas meriendas y
-                cenas que brindamos cada semana de
-                acuerdo a los alimentos disponibles y a algunos objetivos nutricionales.
+                
+                También podes participar colaborando a través de nuestra cuenta ya que sus aportes nos permiten afrontar los honorarios de los profesionales de distintas áreas de la Educación que guían a nuestro Equipo Voluntario durante los talleres educativos
+                <br>
+                  Banco Santander Rio – Cuenta 390-001736/1<br>
+                CBU 0720390720000000173618<br>
+                ALIAS Personas.Voluntarias
+              </template>
+            </pvu-card>
+            <pvu-card title="Obra Aula Comedor (Nuevo)" color="light-blue"
+              img="static/imgs/2024-1/obra1.jpg">
+              <template #content>
+                Actualmente estamos desarrollando nuestra tarea voluntaria en Barrio Cooperativa Argüello. Conocimos a la familia de Marta a través de nuestro entorno y, evaluando que ellos mismos asistían desinteresadamente a niños y jóvenes de su humilde barrio sin ayuda alguna más que la del fruto de sus trabajos particulares, decidimos acompañarles porque son personas que se esfuerzan para generar situaciones positivas en la vida de otros.<br>
+Entonces, durante todo este 2024 vamos a culminar la obra que ellos mismos arrancaron para concluir con un salón de 100mts2 que ya tiene sus cuatro paredes levantadas. Allí vamos a realizar el cerramiento del techo con chapas y tirantes de madera, además de la loza, un baño y cocina. 
+Si desean colaborar con materiales o similares, pueden escribirnos un mail en el link que figura en este banner; o bien colaborar con dinero para la mano de obra del barrio en el apartado DONANTES de esta página web.
               </template>
               <template #buttons>
-                <v-btn text href="/adminPVUApp/menu/">
-                  <v-icon>mdi-open-in-new</v-icon>&nbsp; Ir Ahora
+                <v-btn text href="mailto:pvunidas@gmail.com">
+                  <v-icon>mdi-email</v-icon>&nbsp; Contactar
                 </v-btn>
               </template>
             </pvu-card>
-            <pvu-card title="Asistencia a Talleres Educativos" color="light-blue"
-              img="https://i.ibb.co/QK1p8rM/170147531-815043709106610-277167437014925875-n.jpg">
+            <pvu-card title="Colectas Habituales" color="#009688" img='static/imgs/2024-1/colecta3.jpg'>
               <template #content>
-                las familias en la participación de las
-                distintas temáticas que abordamos en favor de su educación y progreso.
-              </template>
-              <template #buttons>
-                <v-btn text href="/adminPVUApp/asistencia/">
-                  <v-icon>mdi-open-in-new</v-icon>&nbsp; Ir Ahora
-                </v-btn>
+                Durante el año, realizamos distintas colectas con objetivos puntuales. Invitamos a los donantes a ser exigentes con la donación: es el afecto de brindarle al Otro algún elemento que se requiera oportunamente, esté nuevo o en impecable estado, y pueda ser de utilidad para esas personas que pretendemos beneficiar con nuestras acciones.<br>
+                <br>
+                RECIBIMOS TODO EL AÑO: útiles escolares, mochilas, cartucheras, etc..
+                <br>
+                RECIBIMOS EN OTOÑO INVIERNO: frazadas (una de las colectas que más nos cuesta lograr). Las viviendas de algunas de las familias son muy humildes y el frío se filtra por todos lados. Mientras más juntemos, más abrigamos; de modo que se evitan enfermedades y también logramos ayudar a un descanso más adecuado por las noches.
+                <br>
+                IMPORTANTE ROPA: únicamente recibimos ropa muy puntual nueva o prácticamente nueva (no gastada, no dañada) para realizar regalos de cumpleaños a nenes y nenas entre los 4 y 16 años… porque todos merecemos un obsequio lindo y nuevo en nuestro día!
               </template>
             </pvu-card>
-            <pvu-card title="Colecta Actual" color="#009688" img="https://i.ibb.co/fd43DW4/asis.jpg">
-              <template #content>
-                Sumarte al Equipo de Voluntariado de PVU requiere Compromiso, Responsabilidad y Empatía. Se participa de
-                talleres de apoyo escolar, jornadas deportivas, roperos comunitarios y cocina. Te invitamos a leer en
-                detalles los requisitos y formalidades para luego poder completar el Formulario de Aspirantes a las
-                distintas actividades.
-              </template>
-            </pvu-card>
-            <pvu-card title="Pasteleria Para Mujeres Trabajadoras" color="primary"
+            <pvu-card title="Otras Actividades" color="primary"
               img="https://i.ibb.co/q9rj3Kk/panaderia.png">
               <template #content>
-                Este es un Taller que gestamos para brindar la posibilidad a mujeres de Villa Los Robles de aprender un
-                nuevo oficio y generar ingresos genuinos trabajando a favor de mejorar su calidad de vida y de sus
-                familias.
-                El lema de progresar a través del esfuerzo se hace presente en este equipo.
-                RECIBIMOS DONACIONES de harina, manteca, dulce de leche, dulce de membrillo y de batata, levadura entre
-                otros.
-                TRABAJAMOS CON MATERIA PRIMA DE CALIDAD y nuestros precios son competitivos sobre todo para
-                revendedores. Con tu compra ayudas a que muchas mujeres puedan continuar con este emprendimiento laboral
-                y social.
+                PVU es una asociación civil que existe desde el año 2017. Durante todo este tiempo, hemos visitado y realizado actividad educativa, social y voluntaria en numerosos territorios vulnerables. 
+                <br>
+                Para conocer sobre muchísimas tareas anteriores les invitamos a navegar por nuestras redes sociales y ver las historias destacadas: <br>
+                <a href="https://www.instagram.com/pvunidas" target="_blank" style="color: white; text-decoration: underline;">Instagram @pvunidas</a> <br> 
+                <a href="https://www.facebook.com/PersonasVoluntariasUnidas" target="_blank" style="color: white; text-decoration: underline;">Página Facebook: Personas Voluntarias Unidas</a><br>
               </template>
               <template #buttons>
                 <v-btn text href="https://forms.gle/sBKNySyaiqaqRJa58">
@@ -175,27 +178,16 @@
                 </v-btn>
               </template>
             </pvu-card>
-            <pvu-card title="Nuestra Cuenta Bancaria" color="#1F7087" img="https://i.ibb.co/K9CV8Br/menu.jpg">
+            <pvu-card title="Asistencia a Talleres Educativos" color="#1F7087" img='static/imgs/2024-1/educativos1.jpg'
+            >
               <template #content>
-                También pueden participar colaborando a través de nuestra cuenta ya que sus aportes nos permiten
-                contar
-                dentro del Equipo Voluntario con profesionales de distintas áreas de la Educación.<br>
-                Banco Santander Rio – Cuenta 390-001736/1<br>
-                CBU 0720390720000000173618<br>
-                ALIAS Personas.Voluntarias
+                En este espacio nos informamos de la frecuencia y el interés de las familias en la participación de las distintas temáticas que abordamos en favor de su educación y progreso.
               </template>
             </pvu-card>
-            <pvu-card title="Microplanta de Bloques 3C" color="deep-purple"
-              img="https://i.ibb.co/xjFbcLF/235522663-2995193407433414-8546209534756409599-n.jpg  ">
+            <pvu-card title="Menu" color="deep-purple"
+              img='static/imgs/2024-1/comedor.jpg'>
               <template #content>
-                Gestamos este vínculo con la empresa 3C CONSTRUCCIONES porque nos identifican las mismas ganas y los
-                mismos valores. A través de una innovadora tecnología de economía circular y triple impacto, este
-                proyecto conjunto nos permite insertar en el mundo laboral a miembros de las familias de Villa Los
-                Robles, donde está ubicada nuestra microplanta.
-                ACTUALMENTE estamos ampliando el aula comedor con una nueva salita para actividades de lectura y con
-                profesionales de psicología; y un nuevo espacio destinado para la cocina.
-                QUERES SUMAR TU APORTE? Podés hacerlo donando botellas de plástico de cualquier tipo que sean inferiores
-                a bidones de 5lts.
+                Este es el espacio donde planificamos las distintas meriendas y cenas que brindamos cada semana de acuerdo a los alimentos disponibles y a algunos objetivos nutricionales.
               </template>
             </pvu-card>
           </pvu-div>
@@ -229,7 +221,10 @@
             offset: true,
             items: [
               {
-                src: 'https://i.ibb.co/7CpL8ZX/74288582-1468483883307690-6887282600927297536-o.jpg',
+                src: 'static/imgs/2024-1/portada1.jpg',
+              },
+              {
+                src: 'static/imgs/2024-1/portada2.jpg',
               },
               {
                 src: 'https://i.ibb.co/d4JCW5V/118030608-1735366049952804-5621280204442170025-o.jpg',
@@ -237,24 +232,20 @@
             ],
             donaciones: [
               {
-                title: '$200',
-                src: 'http://mpago.la/2GJHbeQ',
-              },
-              {
-                title: '$500',
-                src: 'http://mpago.la/2DwEwsz',
-              },
-              {
                 title: '$1000',
-                src: 'http://mpago.la/2tqcND6',
+                src: 'https://mpago.la/1Swy6Lh',
               },
               {
                 title: '$2000',
-                src: 'http://mpago.la/1eoy1yY',
+                src: 'https://mpago.la/23KYsjh',
               },
               {
                 title: '$5000',
-                src: 'http://mpago.la/1wjD5bC',
+                src: 'https://mpago.la/1H8ehpr',
+              },
+              {
+                title: '$10000',
+                src: 'https://mpago.la/2HoNa6t',
               },
             ]
           }
